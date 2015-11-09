@@ -1,0 +1,28 @@
+{
+  "name": "Moilly",
+  "version": "0.0.1",
+  "description": "Fuel manager",
+  "main": "index.js",
+  "scripts": {
+    "test": "tests"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SergeyRyzhov/Moilly"
+  },
+  "keywords": [
+    "fuel",
+    "oil",
+    "manager"
+  ],
+  "author": "Sergey Ryzhov",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SergeyRyzhov/Moilly/issues"
+  },
+  "homepage": "https://github.com/SergeyRyzhov/Moilly",
+  "dependencies": {
+    "express": "^4.13.3",
+    "jsonwebtoken": "^5.4.1"
+  }
+}
