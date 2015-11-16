@@ -22,5 +22,6 @@ module.exports = {
 	ru: require('./ru.json'),
 	en: require('./en.json'),
 
-	get: readLabel
+	get: readLabel,
+	hasCulture: function(c) { return correctCulture (c) === c }
 };
