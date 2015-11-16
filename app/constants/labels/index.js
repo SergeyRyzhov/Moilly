@@ -1,8 +1,16 @@
 var settings = require('../settings/index');
 
 function readLabel(name, culture) {
-	culture = culture || settings.common.defaultCulture;
+	culture = correctCulture(culture);	
 	return this[culture][name] || getDefault(name, culture);
+}
+
+function correctCulture(culture) {
+	culture = culture || settings.common.defaultCulture;
+	if(!this[culture]){		
+		culture = settings.common.defaultCulture;
+	}	
+	return culture;
 }
 
 function getDefault(name, culture) {
@@ -11,8 +19,8 @@ function getDefault(name, culture) {
 }
 
 module.exports = {
-	ru: require('./ru.js'),
-	en: require('./en.js'),
+	ru: require('./ru.json'),
+	en: require('./en.json'),
 
 	get: readLabel
 };
