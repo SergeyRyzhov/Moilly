@@ -1,15 +1,20 @@
 var settings = require('../settings/index');
+var _ = require('underscore');
+var cultures = {
+	ru: require('./ru.json'),
+	en: require('./en.json')
+};
 
 function readLabel(name, culture) {
-	culture = correctCulture(culture);	
-	return this[culture][name] || getDefault(name, culture);
+	culture = correctCulture(culture);
+	return cultures[culture][name] || getDefault(name, culture);
 }
 
 function correctCulture(culture) {
 	culture = culture || settings.common.defaultCulture;
-	if(!this[culture]){		
+	if (!cultures[culture]) {
 		culture = settings.common.defaultCulture;
-	}	
+	}
 	return culture;
 }
 
@@ -19,9 +24,6 @@ function getDefault(name, culture) {
 }
 
 module.exports = {
-	ru: require('./ru.json'),
-	en: require('./en.json'),
-
 	get: readLabel,
-	hasCulture: function(c) { return correctCulture (c) === c }
+	hasCulture: function (c) { return correctCulture(c) === c }
 };
