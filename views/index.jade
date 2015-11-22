@@ -1,5 +1,12 @@
 extends layout
-
+block headermeta
+  meta( name="viewport" content="width=device-width, initial-scale=1.0")
+block headerscripts
+  script(src="js/require.js", data-main="js/moilly/startup")
+  //link(href="http://fonts.googleapis.com/icon?family=Material+Icons", rel="stylesheet")
+  link(href="/font/material-design-icons/Material-Design-Icons.woff", rel="alternate")
+  link(type="text/css" rel="stylesheet" href="/css/materialize.css",  media="screen,projection")
 block content
   h1= title
   p Welcome to #{title}
+  div(data-bind="component: 'login'")

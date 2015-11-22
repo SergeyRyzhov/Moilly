@@ -18,7 +18,11 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'public')));
+
+app.use('/js', express.static(path.join(__dirname, 'public/javascripts')));
+app.use('/css', express.static(path.join(__dirname, 'public/stylesheets')));
+app.use('/img', express.static(path.join(__dirname, 'public/images')));
+app.use('/font', express.static(path.join(__dirname, 'public/font')));
 
 app.use('/', routes);
 

@@ -15,4 +15,11 @@ router.get('/', function (req, res, next) {
   res.redirect('/' + constants.settings.common.defaultCulture);
 });
 
+router.get('/components/:name', function (req, res, next) {
+  //if (constants.labels.hasCulture(req.params.culture))
+    res.render('components/' + req.params.name);//, { title: constants.labels.get('siteTitle', req.params.culture) });
+  //else
+    //res.redirect('/' + constants.settings.common.defaultCulture);
+});
+
 module.exports = router;

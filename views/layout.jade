@@ -1,7 +1,9 @@
 doctype html
 html
   head
+    block headermeta
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/style.css')
+    block headerscripts
   body
     block content
