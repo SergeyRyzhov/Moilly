@@ -1,18 +1,22 @@
 define([
-	'knockout'
-], function (ko) {
+	'knockout',
+	'underscore'
+], function (ko, _) {
 	'use strict';
-	console.info('Loading componets');
+	console.info('Componets loader initialized');
 	
-	function register(name) {
-		var model = 'components/' + name;
-		var template = 'text!/components/' + name;
+	var loader = {
+		getConfig: function (name, callback) {		
+			
+			var model = 'components/' + name;
+			var template = 'text!/components/' + name;
 
-		ko.components.register(name, {
-			viewModel: { require: model },
-			template: { require: template }
-		});
-	}
+			callback({
+				viewModel: { require: model },
+				template: { require: template }
+			});
+		}
+	};
 
-	register('login');
+	ko.components.loaders.unshift(loader);
 });

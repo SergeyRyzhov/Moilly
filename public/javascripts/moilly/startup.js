@@ -1,15 +1,19 @@
 requirejs.config({
     baseUrl: 'js',
+    //waitSeconds: 0,
     paths: {
         moilly: 'moilly/app',
 
+        text: 'text',
+        json: 'json2',
+        
         underscore: 'underscore',
-        knockout: 'knockout-3.4.0',
+        knockout: 'knockout-3.4.0.debug',
 
-        jquery: 'jquery-2.1.4',
+        //jquery: 'jquery-2.1.4',
         materialize: 'materialize',
         picker: 'picker',
-        components: 'components/main',
+        components:'components',
     },
     shim: {
         underscore: {
@@ -18,15 +22,15 @@ requirejs.config({
         jquery: {
             exports: '$'
         },
-        materialize: {
-            deps: ['jquery', 'picker']
+        picker:{
+           // deps: ['jquery']
         },
-        components: {
-            deps: ['knockout']
-        }/*,
-        /*moilly:{
-            deps:['components']
-        }*/
+        materialize: {
+            deps: [ 'picker']//'jquery',
+        },
+        moilly:{
+            deps: ['components/main']
+        }
     },
     bundles: {
     }
@@ -34,4 +38,4 @@ requirejs.config({
 
 
 
-requirejs(['components', 'moilly']);
+requirejs(['moilly']);
