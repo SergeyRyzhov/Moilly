@@ -4,10 +4,10 @@ define([
 ], function (ko, _) {
 	'use strict';
 	console.info('Componets loader initialized');
-	
+
 	var loader = {
-		getConfig: function (name, callback) {		
-			
+		getConfig: function (name, callback) {
+
 			var model = 'components/' + name;
 			var template = 'text!/components/' + name;
 

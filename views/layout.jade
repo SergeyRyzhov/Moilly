@@ -1,9 +1,38 @@
+- bodyclass=''
 doctype html
-html
+html(lang=culture)
   head
+    meta(charset='utf-8')
+    meta(http-equiv='X-UA-Compatible', content='IE=edge')
+    meta(name='viewport', content='width=device-width, initial-scale=1')
+
     block headermeta
-    title= title
-    link(rel='stylesheet', href='/css/style.css')
+    
+    title= site.title
+    
+    link(rel="stylesheet",href="/vendor/css/material.css")
+    script(src="/vendor/js/material.js")
+    link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")   
+    
     block headerscripts
-  body
-    block content
+  body(class=bodyclass)
+    .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
+      header.mdl-layout__header
+          .mdl-layout__header-row
+            .mdl-layout-spacer
+            .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
+              label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
+                i.material-icons search
+              .mdl-textfield__expandable-holder
+                input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= search.title)
+        .mdl-layout__drawer
+          span.mdl-layout-title=site.shortTitle
+          nav.mdl-navigation
+            a.mdl-navigation__link(href='#account')= menu.account
+            a.mdl-navigation__link(href='#cars')= menu.cars
+            a.mdl-navigation__link(href='#stats')= menu.stats
+            a.mdl-navigation__link(href='#about')= menu.about
+        main.mdl-layout__content
+          block content
+    script.
+      //document.addEventListener('DOMContentLoaded', componentHandler.upgradeDom);

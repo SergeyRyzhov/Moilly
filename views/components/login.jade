@@ -1,7 +1,9 @@
-form
-	label
-		span
-		input
-	label
-		span
-		input
+form(action='#')
+	.mdl-textfield.mdl-js-textfield
+		input#sample1.mdl-textfield__input(type='text')
+		label.mdl-textfield__label(for='sample1') Text...
+
+	.mdl-textfield.mdl-js-textfield
+		input#sample2.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?')
+		label.mdl-textfield__label(for='sample2') Number...
+		span.mdl-textfield__error Input is not a number!

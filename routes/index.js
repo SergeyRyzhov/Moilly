@@ -3,10 +3,24 @@ var router = express.Router();
 
 var constants = require('../app/constants/index');
 
+function getSettings(req) {
+  var get = function (name) {
+    return constants.labels.get(name, req.params.culture)
+  }
+
+  return {
+    culture: req.params.culture,
+    
+    site: get('site'),
+    menu: get('menu'),
+    search: get('search'),
+  };
+}
+
 /* GET app page. */
 router.get('/:culture', function (req, res, next) {
   if (constants.labels.hasCulture(req.params.culture))
-    res.render('index', { title: constants.labels.get('siteTitle', req.params.culture) });
+    res.render('index', getSettings(req));
   else
     res.redirect('/' + constants.settings.common.defaultCulture);
 });
@@ -17,9 +31,9 @@ router.get('/', function (req, res, next) {
 
 router.get('/components/:name', function (req, res, next) {
   //if (constants.labels.hasCulture(req.params.culture))
-    res.render('components/' + req.params.name);//, { title: constants.labels.get('siteTitle', req.params.culture) });
+  res.render('components/' + req.params.name);
   //else
-    //res.redirect('/' + constants.settings.common.defaultCulture);
+  //res.redirect('/' + constants.settings.common.defaultCulture);
 });
 
 module.exports = router;

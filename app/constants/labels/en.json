@@ -1,3 +1,15 @@
-{
-	"siteTitle": "Molly. Your fuel manager"
+{	
+	"site": {
+		"title": "Molly. Your fuel manager",
+		"shortTitle": "Molly"
+	},
+	"menu": {
+		"account": "Account",
+		"cars": "Cars",
+		"stats": "Statistics",
+		"about": "About us"
+	},
+	"search": {
+		"title": "Search"
+	}
 }
