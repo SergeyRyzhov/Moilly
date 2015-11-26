@@ -14,6 +14,7 @@ function getSettings(req) {
     site: get('site'),
     menu: get('menu'),
     search: get('search'),
+    auth: get('auth')
   };
 }
 
@@ -31,7 +32,7 @@ router.get('/', function (req, res, next) {
 
 router.get('/components/:name', function (req, res, next) {
   //if (constants.labels.hasCulture(req.params.culture))
-  res.render('components/' + req.params.name);
+  res.render('components/' + req.params.name, getSettings(req));
   //else
   //res.redirect('/' + constants.settings.common.defaultCulture);
 });

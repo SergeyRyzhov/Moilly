@@ -1,9 +1,10 @@
+h4=auth.login.title
 form(action='#')
 	.mdl-textfield.mdl-js-textfield
 		input#sample1.mdl-textfield__input(type='text')
-		label.mdl-textfield__label(for='sample1') Text...
+		label.mdl-textfield__label(for='sample1')=auth.login.username
 
 	.mdl-textfield.mdl-js-textfield
-		input#sample2.mdl-textfield__input(type='text', pattern='-?[0-9]*(\.[0-9]+)?')
-		label.mdl-textfield__label(for='sample2') Number...
+		input#sample2.mdl-textfield__input(type='password')
+		label.mdl-textfield__label(for='sample2')=auth.login.password
 		span.mdl-textfield__error Input is not a number!
