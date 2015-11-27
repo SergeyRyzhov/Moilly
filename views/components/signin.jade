@@ -1,10 +1,11 @@
-h4=auth.login.title
+h4=auth.signin.title
 form(action='#')
 	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 		input#username.mdl-textfield__input(type='text', name='username')
-		label.mdl-textfield__label(for='username')=auth.login.username
+		label.mdl-textfield__label(for='username')=auth.signin.username
 	br
 	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
 		input#password.mdl-textfield__input(type='password', name='password')
-		label.mdl-textfield__label(for='password')=auth.login.password
-		span.mdl-textfield__error Input is not a number!
+		label.mdl-textfield__label(for='password')=auth.signin.password
+	br
+	button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='submit')=auth.signin.submit

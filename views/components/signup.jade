@@ -1,0 +1,19 @@
+h4=auth.signup.title
+form(action='#')
+	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+		input#username.mdl-textfield__input(type='text', name='username')
+		label.mdl-textfield__label(for='username')=auth.signup.username
+	br
+	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+		input#email.mdl-textfield__input(type='email', name='email')
+		label.mdl-textfield__label(for='email')=auth.signup.email
+	br
+	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+		input#phone.mdl-textfield__input(type='text', name='phone')
+		label.mdl-textfield__label(for='phone')=auth.signup.phone
+	br
+	.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+		input#password.mdl-textfield__input(type='password', name='password')
+		label.mdl-textfield__label(for='password')=auth.signup.password
+	br
+	button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='submit')=auth.signup.submit

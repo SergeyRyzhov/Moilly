@@ -7,8 +7,14 @@ block headerscripts
 block content
   h1= site.title
   //p Welcome to #{site.title}
+
+  .mdl-grid
+    .mdl-cell.mdl-cell--6-col
+      // ko component: {name: "signin", params: { }}
+      // /ko    
+    .mdl-cell.mdl-cell--6-col    
+      // ko component: {name: "signup", params: { }}
+      // /ko    
   
-  // ko component: {name: "login", params: { }}
-  // /ko
   
   // div(data-bind="component: 'login'")
