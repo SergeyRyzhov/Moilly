@@ -7,7 +7,6 @@ function merge(target, source) {
 			merge(target[prop], source[prop]);
 		}
 	}
-	console.log(target);
 	return target;
 }
 
