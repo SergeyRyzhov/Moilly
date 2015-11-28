@@ -1,37 +1,38 @@
-#!/usr/bin/env node
-
-/**
- * Module dependencies.
- */
+var env = process.env;
 
 var app = require('../index');
 var debug = require('debug')('moilly:server');
 var http = require('http');
 
-/**
- * Get port from environment and store in Express.
- */
-
-var port = normalizePort(process.env.PORT || '3000');
+var port = normalizePort(env.PORT || '3000');
 app.set('port', port);
 
-/**
- * Create HTTP server.
- */
+/*var jwt = require('express-jwt');
+var jwtmidlware = jwt({
+  secret: new Buffer(env.JWTSECRET, 'base64'),
+  getToken: function (req) {
+    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'authtoken') {
+      return req.headers.authorization.split(' ')[1];
+    } else if (req.query && req.query.token) {
+      return req.query.token;
+    }
+    return null;
+  }
+});
+
+
+app.get('/auth/2',
+  jwtmidlware,
+  function (req, res) {
+    if (!req.user.admin) return res.sendStatus(401);
+    res.sendStatus(200);
+  });*/
 
 var server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
 
 server.listen(port);
 server.on('error', onError);
 server.on('listening', onListening);
-
-/**
- * Normalize a port into a number, string, or false.
- */
 
 function normalizePort(val) {
   var port = parseInt(val, 10);
@@ -48,10 +49,6 @@ function normalizePort(val) {
 
   return false;
 }
-
-/**
- * Event listener for HTTP server "error" event.
- */
 
 function onError(error) {
   if (error.syscall !== 'listen') {
@@ -76,10 +73,6 @@ function onError(error) {
       throw error;
   }
 }
-
-/**
- * Event listener for HTTP server "listening" event.
- */
 
 function onListening() {
   var addr = server.address();

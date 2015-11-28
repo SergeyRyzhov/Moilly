@@ -1,7 +1,8 @@
-var mongoose = require('mongoose');
+var mongodb = require('../tools/mongodb.js');
 var crypto = require('crypto');
 
-var Schema = mongoose.Schema;
+var Schema = mongodb.schema;
+var mongo = mongodb.mongo;
 
 var UserSchema = new Schema({
   name: { type: String, default: '' },
@@ -13,13 +14,13 @@ var UserSchema = new Schema({
 
 UserSchema
   .virtual('password')
-  .set(function(password) {
+  .set(function (password) {
     this._password = password;
     this.salt = this.makeSalt();
     this.hashed_password = this.encryptPassword(password);
   })
-  .get(function() { return this._password });
-  
+  .get(function () { return this._password });
+
 var validatePresenceOf = function (value) {
   return value && value.length;
 };
@@ -33,8 +34,8 @@ UserSchema.path('email').validate(function (email) {
 }, 'Email cannot be blank');
 
 UserSchema.path('email').validate(function (email, fn) {
-  var User = mongoose.model('User');
-  
+  var User = mongo.model('User');
+
   if (this.isNew || this.isModified('email')) {
     User.find({ email: email }).exec(function (err, users) {
       fn(!err && users.length === 0);
@@ -50,7 +51,7 @@ UserSchema.path('hashed_password').validate(function (hashed_password) {
   return hashed_password.length && this._password.length;
 }, 'Password cannot be blank');
 
-UserSchema.pre('save', function(next) {
+UserSchema.pre('save', function (next) {
   if (!this.isNew) return next();
 
   if (!validatePresenceOf(this.password) && !this.skipValidation()) {
@@ -89,4 +90,11 @@ UserSchema.statics = {
   }
 }
 
-mongoose.model('User', UserSchema);
+var model;
+
+if (mongo.models.User) {
+  model = mongo.model('User');
+} else {
+  model = mongo.model('User', UserSchema);
+}
+module.exports = model;

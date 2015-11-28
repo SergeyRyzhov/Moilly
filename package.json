@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "tests",
-    "start": "node ./bin/www"
+    "start": "nf start"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,8 @@
     "express": "~4.13.1",
     "express-jwt": "^3.3.0",
     "jade": "~1.11.0",
+    "jsonwebtoken": "^5.4.1",
+    "log4js": "^0.6.29",
     "mongoose": "^4.2.5",
     "morgan": "~1.6.1",
     "serve-favicon": "~2.3.0",

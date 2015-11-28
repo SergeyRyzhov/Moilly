@@ -1,31 +1,21 @@
-'use strict';
-var mongoose = require('mongoose');
-var config = require('config');
+var mongodb = require('../tools/mongodb.js');
+var crypto = require('crypto');
 
-var utils = require('underscore');
+var Schema = mongodb.schema;
+var mongo = mongodb.mongo;
 
-var Schema = mongoose.Schema;
+var _ = require('underscore');
 
 var RefillSchema = new Schema({
 	date: { type: Date, default: Date.now, required: true },
-	distance: {type: Number, default: 0, required: true},
-	mileage: {type: Number, default: 0, required: true},
-	volume: {type: Number, default: 0, required: true},
-	total: {type: Number, default: 0, required: true},
-	cost: {type: Number, default: 0, required: true},
+	distance: { type: Number, default: 0, required: true },
+	mileage: { type: Number, default: 0, required: true },
+	volume: { type: Number, default: 0, required: true },
+	total: { type: Number, default: 0, required: true },
+	cost: { type: Number, default: 0, required: true },
 	title: { type: String, default: '', trim: true },
 	body: { type: String, default: '', trim: true },
-	user: { type: Schema.ObjectId, ref: 'User' },
-	comments: [{
-		body: { type: String, default: '' },
-		user: { type: Schema.ObjectId, ref: 'User' },
-		createdAt: { type: Date, default: Date.now }
-	}],
-	image: {
-		cdnUri: String,
-		files: []
-	},
-	createdAt: { type: Date, default: Date.now }
+	user: { type: Schema.ObjectId, ref: 'User' }
 });
 
 RefillSchema.path('title').required(true, 'Article title cannot be blank');
@@ -55,7 +45,7 @@ RefillSchema.methods = {
 	},
 
 	removeComment: function (commentId, cb) {
-		var index = utils.indexof(this.comments, { id: commentId });
+		var index = _.indexof(this.comments, { id: commentId });
 		if (~index) this.comments.splice(index, 1);
 		else return cb('not found');
 		this.save(cb);
@@ -69,7 +59,7 @@ RefillSchema.statics = {
 			.populate('comments.user')
 			.exec(cb);
 	},
-	
+
 	list: function (options, cb) {
 		var criteria = options.criteria || {};
 
@@ -82,4 +72,11 @@ RefillSchema.statics = {
 	}
 };
 
-mongoose.model('Refill', RefillSchema);
+var model;
+
+if (mongo.models.Refill) {
+	model = mongo.model('Refill');
+} else {
+	model = mongo.model('Refill', RefillSchema);
+}
+module.exports = model;
