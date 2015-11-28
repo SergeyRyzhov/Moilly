@@ -4,21 +4,23 @@ var utils = require('../../tools/utils');
 var cultures = {};
 
 
-function initialize(){	 
-	function loadLabels(cultures){		
+function initialize() {
+	function loadLabels(cultures) {
 		var defaultLabels = require('./default.json');
-		
-		return _.object( _.map(cultures, function(culture) {			
-			return [culture, utils.merge(require('./'+culture+'.json'), defaultLabels)];
+
+		return _.object(_.map(cultures, function (culture) {
+			return [culture, utils.merge(require('./' + culture + '.json'), defaultLabels)];
 		}));
 	}
-	
+
 	cultures = loadLabels(['ru', 'en']);
 }
 
-function readLabel(name, culture) {
+function load(culture) {
 	culture = correctCulture(culture);
-	return cultures[culture][name] || getDefault(name, culture);
+	var labels = cultures[culture];
+	//console.log(labels);
+	return labels;
 }
 
 function correctCulture(culture) {
@@ -29,14 +31,9 @@ function correctCulture(culture) {
 	return culture;
 }
 
-function getDefault(name, culture) {
-	culture = culture || settings.common.defaultCulture;
-	return 'No label named ' + name + ' of culture ' + culture;
-}
-
 initialize();
 
 module.exports = {
-	get: readLabel,
+	load: load,
 	hasCulture: function (c) { return correctCulture(c) === c }
 };

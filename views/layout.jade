@@ -8,7 +8,7 @@ html(lang=culture)
 
     block headermeta
     
-    title= site.title
+    title= labels.site.title
     
     link(rel="stylesheet",href="/vendor/css/material.css")
     script(src="/vendor/js/material.js")
@@ -19,20 +19,20 @@ html(lang=culture)
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
       header.mdl-layout__header
           .mdl-layout__header-row
-            h3= site.title
+            h3= labels.site.title
             .mdl-layout-spacer
             .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
               label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
                 i.material-icons search
               .mdl-textfield__expandable-holder
-                input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= search.title)
+                input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= labels.search.title)
         .mdl-layout__drawer
-          span.mdl-layout-title=site.shortTitle
+          span.mdl-layout-title=labels.site.shortTitle
           nav.mdl-navigation
-            a.mdl-navigation__link(href='#account')= menu.account
-            a.mdl-navigation__link(href='#cars')= menu.cars
-            a.mdl-navigation__link(href='#stats')= menu.stats
-            a.mdl-navigation__link(href='#about')= menu.about
+            a.mdl-navigation__link(href='#account')= labels.menu.account
+            a.mdl-navigation__link(href='#cars')= labels.menu.cars
+            a.mdl-navigation__link(href='#stats')= labels.menu.stats
+            a.mdl-navigation__link(href='#about')= labels.menu.about
         main.mdl-layout__content
           block content
     script.
