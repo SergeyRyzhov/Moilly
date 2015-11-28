@@ -11,5 +11,29 @@
 	},
 	"search": {
 		"title": "Search"
+	},
+	"auth": {
+		"signin": {
+			"title": "Sign in",
+			"username": "Login (email, phone, nickname)",
+			"password": "Password",
+			"submit": "Sign in"
+		},
+		"signup": {
+			"title": "Sign up",
+			"username": "Name",
+			"email": "Email",
+			"phone": "Phone number",
+			"password": "Password",
+			"submit": "Sign up"
+		}
+	},
+	"errors": {
+		"components": {
+			"loading": {
+				"title": "Unable to load part of page",
+				"body": "We apologize"
+			}
+		}
 	}
 }

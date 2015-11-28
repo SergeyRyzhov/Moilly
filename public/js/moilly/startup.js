@@ -3,8 +3,11 @@ requirejs.config({
     //waitSeconds: 0,
     paths: {
         moilly: './moilly/app',
-        storage: './moilly/storage',
+        storage: './moilly/tools/storage',
+        utils: './moilly/tools/utils',
         constants: './moilly/constants',
+        localization: './moilly/tools/localization',
+        navigator: './moilly/tools/navigator',
 
         text: '../vendor/js/text',
         json: '../vendor/js/json2',
@@ -14,6 +17,7 @@ requirejs.config({
         'jquery.cookie': '../vendor/js/jquery.cookie',
         purl: '../vendor/js/purl',
         amplify: '../vendor/js/amplify',
+        sammy: '../vendor/js/sammy',
 
 
         components: 'components',
@@ -30,9 +34,12 @@ requirejs.config({
             exports: '$'
         },
         moilly: {
-            deps: ['components/main']
+            deps: ['components/main', 'navigator']
         },
         'jquery.cookie': {
+            deps: ['jquery']
+        },
+        'sammy': {
             deps: ['jquery']
         },
     },
