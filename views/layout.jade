@@ -23,6 +23,13 @@ html(lang=culture)
           .mdl-layout__header-row
             h3= labels.site.title
             .mdl-layout-spacer
+            button#language-selector.mdl-button.mdl-js-button.mdl-button--icon
+              i.material-icons more_vert
+            ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='language-selector')
+              li.mdl-menu__item
+                a(href="/ru")= labels.localization.ru
+              li.mdl-menu__item
+                a(href="/en")= labels.localization.en
             .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
               label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
                 i.material-icons search

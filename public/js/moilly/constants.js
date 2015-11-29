@@ -12,7 +12,8 @@ define([
 			}
 		},
 		common: {
-			authpaths: ['account'] //todo. load from server
+			authpaths: ['account'], //todo. load from server
+			bindingTimeout: 500
 		}
 	}
 });

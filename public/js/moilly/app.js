@@ -13,22 +13,19 @@ define([
 
 	var user = { isAnonymous: true };
 	var page = ko.observable(utils.purl.attr('fragment'));
-	var needauth = ko.pureComputed(function () {
-		return _.contains(constants.common.authpaths, page()) && user.isAnonymous;
-	});
 
 	function initialize() {
+
 		amplify.subscribe(constants.events.navigation.page, page);
 
-		navigator.registerMenu(['account', 'cars', 'stats', 'about'])
-	}
-	
-	initialize();
-	
-	ko.applyBindings({
-		page: page,
-		needauth: needauth
-	});
+		navigator.registerMenu(['account', 'cars', 'stats', 'about']);
 
-	setTimeout(componentHandler.upgradeDom, 500);
+		ko.applyBindings({
+			page: page,
+			user: user
+		});
+		setTimeout(componentHandler.upgradeDom, constants.common.bindingTimeout);
+	}
+
+	setTimeout(initialize, 0);
 });

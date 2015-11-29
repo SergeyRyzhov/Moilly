@@ -5,12 +5,7 @@ block headerscripts
   script(src="/vendor/js/require.js", data-main="js/moilly/startup")
   link(rel='stylesheet', href='/css/style.css')
 block content
-  //ko if: needauth
-  .mdl-grid
-    .mdl-cell.mdl-cell--6-col
-      // ko component: {name: "signin", params: { }}
-      // /ko
-    .mdl-cell.mdl-cell--6-col
-      // ko component: {name: "signup", params: { }}
-      // /ko
+  // ko if: page
+  // ko component: {name: page, params: { user: user }}
+  // /ko
   // /ko

@@ -14,6 +14,7 @@ define([
 			_.each(paths, function (path) {
 				app.get('#' + path, function () {
 					amplify.publish(constants.events.navigation.page, path);
+					setTimeout(componentHandler.upgradeDom, constants.common.bindingTimeout);
 				});
 			});
 		});

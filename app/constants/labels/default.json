@@ -28,6 +28,10 @@
 			"submit": "Зарегистрироваться"
 		}
 	},
+	"localization": {
+		"ru": "Русский",
+		"en": "English"
+	},
 	"errors": {
 		"components": {
 			"loading": {
