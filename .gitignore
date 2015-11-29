@@ -2,11 +2,12 @@
 logs
 *.log
 npm-debug.log*
+
+# Enviroment
 *.env
-
-
 
 # Dependency directory
 node_modules/
 
+# Other
 downloads/

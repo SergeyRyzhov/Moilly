@@ -15,7 +15,7 @@ html(lang=culture)
     link(rel="stylesheet", href="https://fonts.googleapis.com/icon?family=Material+Icons")
     link(rel="icon", href="/img/favicon.ico", type="image/x-icon")
     link(rel="shortcut icon", href="/img/favicon.ico", type="image/x-icon")
-    
+
     block headerscripts
   body(class=bodyclass)
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
@@ -44,5 +44,3 @@ html(lang=culture)
             a.mdl-navigation__link(href='#about')= labels.menu.about
         main.mdl-layout__content
           block content
-    script.
-      //document.addEventListener('DOMContentLoaded', componentHandler.upgradeDom);

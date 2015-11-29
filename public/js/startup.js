@@ -2,12 +2,12 @@ requirejs.config({
     baseUrl: 'js',
     //waitSeconds: 0,
     paths: {
-        moilly: './moilly/app',
-        storage: './moilly/tools/storage',
-        utils: './moilly/tools/utils',
-        constants: './moilly/constants',
-        localization: './moilly/tools/localization',
-        navigator: './moilly/tools/navigator',
+        moilly: './app',
+        storage: './tools/storage',
+        utils: './tools/utils',
+        constants: './constants',
+        localization: './tools/localization',
+        navigator: './tools/navigator',
 
         text: '../vendor/js/text',
         json: '../vendor/js/json2',
