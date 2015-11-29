@@ -6,8 +6,9 @@ define([
 	'localization'
 ], function (ko, _, storage, constants, localization) {
 	'use strict';
-	
+
 	return function (params) {
+		console.debug('Menu', params);
 		return {
 		}
 	};

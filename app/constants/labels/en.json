@@ -1,4 +1,4 @@
-{	
+{
 	"site": {
 		"title": "Molly. Your fuel manager",
 		"shortTitle": "Molly"
@@ -27,6 +27,10 @@
 			"password": "Password",
 			"submit": "Sign up"
 		}
+	},
+	"about": {
+		"title": "About us",
+		"message": "The site is temporary on maintenance. We will be glad to see you later."
 	},
 	"errors": {
 		"components": {

@@ -8,6 +8,7 @@ define([
 	'use strict';
 	
 	return function (params) {
+		console.debug('Languages', params);
 		return {
 		}
 	};
