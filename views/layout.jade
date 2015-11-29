@@ -23,7 +23,7 @@ html(lang=culture)
           .mdl-layout__header-row
             h3= labels.site.title
             .mdl-layout-spacer
-            - var langAttributes = {'data-bind': {component:{name: 'language-selector', params: labels.localization }}};
+            - var langAttributes = {'data-bind': {component: {name: 'language-selector', params: labels.localization }}};
             div&attributes(langAttributes)
             .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
               label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
@@ -32,7 +32,7 @@ html(lang=culture)
                 input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= labels.search.title)
         .mdl-layout__drawer
           span.mdl-layout-title=labels.site.shortTitle
-          - var menuAttributes = {'data-bind': {component:{name:'menu', params: labels.menu }}};
+          - var menuAttributes = {'data-bind': {component: {name: 'menu', params: labels.menu }}};
           div&attributes(menuAttributes)
         main.mdl-layout__content
           block content

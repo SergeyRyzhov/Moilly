@@ -1,7 +1,5 @@
 button#language-selector.mdl-button.mdl-js-button.mdl-button--icon
 	i.material-icons more_vert
-ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='language-selector')
+ul.mdl-menu.mdl-menu--bottom-right.mdl-js-menu.mdl-js-ripple-effect(for='language-selector', data-bind='foreach: languages')
 	li.mdl-menu__item
-		a(href="/ru")= labels.localization.ru
-	li.mdl-menu__item
-		a(href="/en")= labels.localization.en
+		a(data-bind='attr: {href: link}, text: title')

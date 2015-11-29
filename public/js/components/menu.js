@@ -3,13 +3,14 @@ define([
 	'underscore',
 	'storage',
 	'constants',
-	'localization'
-], function (ko, _, storage, constants, localization) {
+	'localization',
+	'utils'
+], function (ko, _, storage, constants, localization, utils) {
 	'use strict';
 
 	return function (params) {
-		console.debug('Menu', params);
 		return {
+			menu: utils.toObjectArray(params, 'link', 'title')
 		}
 	};
 });

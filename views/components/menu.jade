@@ -1,5 +1,2 @@
-nav.mdl-navigation
-	a.mdl-navigation__link(href='#account')= labels.menu.account
-	a.mdl-navigation__link(href='#cars')= labels.menu.cars
-	a.mdl-navigation__link(href='#stats')= labels.menu.stats
-	a.mdl-navigation__link(href='#about')= labels.menu.about
+nav.mdl-navigation(data-bind='foreach: menu')
+	a.mdl-navigation__link(data-bind='attr: {href: link}, text: title')
