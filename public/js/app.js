@@ -4,9 +4,8 @@ define([
 	'utils',
 	'storage',
 	'constants',
-	'amplify',
-	'navigator'
-], function (_, ko, utils, storage, constants, amplify, navigator) {
+	'amplify'
+], function (_, ko, utils, storage, constants, amplify) {
 	console.info('Moilly loaded.');
 	console.debug('KO', ko);
 	console.debug('Underscore', _);
@@ -18,12 +17,11 @@ define([
 
 		amplify.subscribe(constants.events.navigation.page, page);
 
-		navigator.registerMenu(['account', 'cars', 'stats', 'about']);
-
 		ko.applyBindings({
 			page: page,
 			user: user
 		});
+		
 		setTimeout(componentHandler.upgradeDom, constants.common.bindingTimeout);
 	}
 

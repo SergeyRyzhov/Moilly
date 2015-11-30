@@ -21,15 +21,15 @@ html(lang=culture)
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
       header.mdl-layout__header
           .mdl-layout__header-row
-            h3= labels.site.title
+            span.mdl-layout-title= labels.site.title
             .mdl-layout-spacer
             - var langAttributes = {'data-bind': {component: {name: 'language-selector', params: labels.localization }}};
             div&attributes(langAttributes)
-            .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
-              label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
-                i.material-icons search
-              .mdl-textfield__expandable-holder
-                input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= labels.search.title)
+            // .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right
+            //   label.mdl-button.mdl-js-button.mdl-button--icon(for='fixed-header-drawer-exp')
+            //     i.material-icons search
+            //   .mdl-textfield__expandable-holder
+            //     input#fixed-header-drawer-exp.mdl-textfield__input(type='text', name='search', placeholder= labels.search.title)
         .mdl-layout__drawer
           span.mdl-layout-title=labels.site.shortTitle
           - var menuAttributes = {'data-bind': {component: {name: 'menu', params: labels.menu }}};
