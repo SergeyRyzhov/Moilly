@@ -10,7 +10,8 @@ define([
 
 	return function (params) {
 		return {
-			menu: utils.toObjectArray(params, 'link', 'title')
+			menu: utils.toObjectArray(params, 'link', 'title'),
+			anchor: function(id) { return '#' + id; }
 		}
 	};
 });
