@@ -16,9 +16,7 @@ router.get('/', function (req, res, next) {
 });
 
 router.get('/:culture/components/:name', function (req, res, next) {
-  //console.log(req.params);
   if (constants.labels.hasCulture(req.params.culture)) {
-    console.log('c');
     res.render('components/' + req.params.name, settings.default(req));
   }
   else {

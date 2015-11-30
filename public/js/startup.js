@@ -1,5 +1,5 @@
 requirejs.config({
-    baseUrl: 'js',
+    baseUrl: '/js',
     //waitSeconds: 0,
     paths: {
         moilly: './app',
@@ -20,7 +20,7 @@ requirejs.config({
         sammy: '../vendor/js/sammy',
 
 
-        components: 'components',
+        components: './components',
     },
     shim: {
         underscore: {
