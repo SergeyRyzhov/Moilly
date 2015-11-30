@@ -6,8 +6,6 @@ define([
 	'localization'
 ], function (ko, _, storage, constants, localization) {
 	'use strict';
-	console.info('Componets loader initialized');
-
 	var loader = {
 		getConfig: function (name, callback) {
 

@@ -8,6 +8,6 @@ define([
 	'use strict';
 	
 	return function (params) {
-		return params;
+		return params || {};
 	};
 });

@@ -6,10 +6,6 @@ define([
 	'constants',
 	'amplify'
 ], function (_, ko, utils, storage, constants, amplify) {
-	console.info('Moilly loaded.');
-	console.debug('KO', ko);
-	console.debug('Underscore', _);
-
 	var user = { isAnonymous: true };
 	var page = ko.observable(utils.purl.attr('fragment'));
 

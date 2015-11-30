@@ -8,7 +8,8 @@ define([
 		},
 		events: {
 			navigation: {
-				page: 'moilly.navigation.page'
+				page: 'moilly.navigation.page',
+				any: 'moilly.navigation.any'
 			}
 		},
 		common: {

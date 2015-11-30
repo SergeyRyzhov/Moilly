@@ -10,8 +10,15 @@ define([
 		});;
 	}
 
+	function logger(name) {
+		return function (val) {
+			console.debug(name, val);
+		}
+	}
+
 	return {
 		toObjectArray: toObjectArray,
-		purl: purl(window.location)
+		purl: purl(window.location),
+		logger: logger
 	};
 });
