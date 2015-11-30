@@ -14,7 +14,7 @@ define([
 
 		function liveSwitcher(options) {
 			options.liveLink = function () {
-				window.location.href = '/' + options.link + '#' + anchor();
+				window.location.href = '/' + options.link + (anchor() ? '#' + anchor() : '');
 			};
 			return options;
 		}
