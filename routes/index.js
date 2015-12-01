@@ -12,7 +12,6 @@ router.get('/:culture', function (req, res, next) {
 });
 
 router.get('/', function (req, res, next) {
-  console.log(req.cookies);
   if (req.cookies.culture)
     res.redirect('/' + req.cookies.culture);
   else
