@@ -15,14 +15,20 @@ define([
 				app.get('#' + path, function () {
 					amplify.publish(constants.events.navigation.page, path);
 					amplify.publish(constants.events.navigation.any, path);
-					setTimeout(componentHandler.upgradeDom, constants.common.bindingTimeout);
 				});
 			});
 		});
 		menu.run();
 	}
 
+
+	function upgradeDom() {
+		componentHandler.upgradeDom();
+		setTimeout(upgradeDom, constants.common.bindingTimeout);
+	}
+
 	return {
-		registerMenu: registerMenuPaths
+		registerMenu: registerMenuPaths,
+		upgradeDom: upgradeDom
 	};
 });

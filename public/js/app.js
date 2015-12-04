@@ -17,8 +17,6 @@ define([
 			page: page,
 			user: user
 		});
-		
-		setTimeout(componentHandler.upgradeDom, constants.common.bindingTimeout);
 	}
 
 	setTimeout(initialize, 0);

@@ -10,6 +10,7 @@ define([
 	'use strict';
 	
 	return function (params) {
+		navigator.upgradeDom();
 		navigator.registerMenu(_.keys(params));
 		return {
 			menu: utils.toObjectArray(params, 'link', 'title'),
