@@ -18,8 +18,8 @@ requirejs.config({
         purl: '../vendor/js/purl',
         amplify: '../vendor/js/amplify',
         sammy: '../vendor/js/sammy',
-
-
+        angular: '../vendor/js/angular',
+        
         components: './components',
     },
     shim: {
