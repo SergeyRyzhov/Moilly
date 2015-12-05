@@ -5,36 +5,36 @@ form(method='POST', action='/refill/add')
 	.mdl-grid
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#date.mdl-textfield__input(type='date', name='date', required)
+				input#date.mdl-textfield__input(type='date', name='date', required, data-bind='value:date')
 				label.mdl-textfield__label(for='date')=labels.refill.date
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#distance.mdl-textfield__input(type='number', name='distance', required, min="1")
+				input#distance.mdl-textfield__input(type='number', name='distance', required, min="1", data-bind='textinput:distance')
 				label.mdl-textfield__label(for='distance')=labels.refill.distance
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#volume.mdl-textfield__input(type='number', name='volume', required, min="1")
+				input#volume.mdl-textfield__input(type='number', name='volume', required, min="1", data-bind='textinput:volume')
 				label.mdl-textfield__label(for='volume')=labels.refill.volume
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#total.mdl-textfield__input(type='number', name='total', required, min="1")
+				input#total.mdl-textfield__input(type='number', name='total', required, min="1", data-bind='textinput:total')
 				label.mdl-textfield__label(for='total')=labels.refill.total
 			br
 		.mdl-cell.mdl-cell--6-col
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#period.mdl-textfield__input(type='text', name='period', readonly)
+				input#period.mdl-textfield__input(type='text', name='period', readonly, data-bind='value:period')
 				label.mdl-textfield__label(for='period')=labels.refill.period
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#mileage.mdl-textfield__input(type='number', name='mileage', readonly)
+				input#mileage.mdl-textfield__input(type='number', name='mileage', readonly, data-bind='value:mileage')
 				label.mdl-textfield__label(for='mileage')=labels.refill.mileage
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#consumption.mdl-textfield__input(type='number', name='consumption', readonly)
+				input#consumption.mdl-textfield__input(type='number', name='consumption', readonly, data-bind='value:consumption')
 				label.mdl-textfield__label(for='consumption')=labels.refill.consumption
 			br
 			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
-				input#cost.mdl-textfield__input(type='number', name='cost', readonly)
+				input#cost.mdl-textfield__input(type='number', name='cost', readonly, data-bind='value:cost')
 				label.mdl-textfield__label(for='cost')=labels.refill.cost
 			br
 	.mdl-grid
