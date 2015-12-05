@@ -12,9 +12,11 @@
 	"search": {
 		"title": "Search"
 	},
+	"account":{
+		"title":"Account"	
+	},
 	"auth": {
 		"logout": {
-			"title": "Sign out",
 			"submit": "Log off"
 		},
 		"signin": {

@@ -22,6 +22,9 @@ app.use(cookieParser());
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(path.join(__dirname, 'vendor')));
 
+var authenticator = require('./app/tools/authenticator');
+app.use(authenticator.midleware);
+
 app.use('/', routes);
 
 // catch 404 and forward to error handler

@@ -12,11 +12,12 @@ var anonymous = { isAuthenticated: false };
 var jwtmidlware = expressJwt({
 	secret: secret,
 	getToken: function (req) {
+		//console.log(req.cookies.authorization);
+		
 		if (req.cookies.authorization) {
 			return req.cookies.authorization;
-		} else if (req.query && req.query.token) {
-			return req.query.token;
 		}
+		
 		return jwt.sign(anonymous, secret);
 	}
 });

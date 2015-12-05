@@ -12,9 +12,11 @@
 	"search": {
 		"title": "Поиск"
 	},
+	"account":{
+		"title":"Личный кабинет"	
+	},
 	"auth": {
 		"logout": {
-			"title": "Выход",
 			"submit": "Выйти"
 		},
 		"signin": {

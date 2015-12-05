@@ -2,12 +2,9 @@ function init(router) {
   var constants = require('../app/constants/index');
   var settings = require('../app/tools/settings');
 
-	var authenticator = require('../app/tools/authenticator');
-  
-
-  router.get('/:culture', authenticator.midleware, function (req, res, next) {
+  router.get('/:culture', function (req, res, next) {
     if (constants.labels.hasCulture(req.params.culture))
-      res.render('index', settings.extended(req, { user: req.user || anonymous }));
+      res.render('index', settings.extended(req, { user: req.user }));
     else
       res.redirect('/' + constants.settings.common.defaultCulture);
   });

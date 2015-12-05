@@ -28,17 +28,21 @@ function init(router) {
 					};
 
 					authenticator.sign(res, publicModel);
+					success = true;
 				}
 			}
 			else {
 				message = err;
 			}
 
-			res.send({
-				message: message,
-				user: publicModel,
-				success: success
-			});
+			if (success)
+				res.redirect('/');
+			else
+				res.send({
+					message: message,
+					user: publicModel,
+					success: success
+				});
 		});
 	});
 
@@ -64,20 +68,24 @@ function init(router) {
 					};
 
 					authenticator.sign(res, publicModel);
+					success = true;
 				}
 			}
 			else {
 				message = err;
 			}
 
-			res.send({
-				message: message,
-				user: publicModel,
-				success: success
-			});
+			if (success)
+				res.redirect('/');
+			else
+				res.send({
+					message: message,
+					user: publicModel,
+					success: success
+				});
 		});
 	});
-	
+
 	router.post('/auth/logout', function (req, res, next) {
 		authenticator.logout(res);
 		res.redirect('/');
