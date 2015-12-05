@@ -3,15 +3,18 @@ define([
 	'underscore',
 	'storage',
 	'constants',
-	'localization'
-], function (ko, _, storage, constants, localization) {
+	'localization',
+	'amplify'
+], function (ko, _, storage, constants, localization, amplify) {
 	'use strict';
-	
+
 	return function (params) {
 		var user = params.user;
-
 		return {
-			needAuth: user.isAnonymous
+			needAuth: ko.pureComputed(function () {
+				var usr = user();
+				return !usr || !usr.isAuthenticated;
+			})
 		}
 	};
 });

@@ -7,27 +7,6 @@ var http = require('http');
 var port = normalizePort(env.PORT || '3000');
 app.set('port', port);
 
-/*var jwt = require('express-jwt');
-var jwtmidlware = jwt({
-  secret: new Buffer(env.JWTSECRET, 'base64'),
-  getToken: function (req) {
-    if (req.headers.authorization && req.headers.authorization.split(' ')[0] === 'authtoken') {
-      return req.headers.authorization.split(' ')[1];
-    } else if (req.query && req.query.token) {
-      return req.query.token;
-    }
-    return null;
-  }
-});
-
-
-app.get('/auth/2',
-  jwtmidlware,
-  function (req, res) {
-    if (!req.user.admin) return res.sendStatus(401);
-    res.sendStatus(200);
-  });*/
-
 var server = http.createServer(app);
 
 server.listen(port);
