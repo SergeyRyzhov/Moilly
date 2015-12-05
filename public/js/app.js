@@ -9,6 +9,13 @@ define([
 	var user = ko.observable({ isAnonymous: true });
 	var page = ko.observable(utils.purl.attr('fragment'));
 
+	var displayPage = ko.pureComputed(function () {
+		var usr = user();
+		var notAuth = !usr || !usr.isAuthenticated;
+
+		return notAuth ? 'auth' : page() || 'refill';
+	});
+
 	function initialize() {
 		amplify.subscribe(constants.events.navigation.page, page);
 		amplify.subscribe(constants.events.user.changed, user);
@@ -16,7 +23,7 @@ define([
 		//amplify.publish(constants.events.user.required);
 
 		ko.applyBindings({
-			page: page,
+			page: displayPage,
 			user: user
 		});
 	}
@@ -25,6 +32,6 @@ define([
 		amplify.unsubscribe(constants.events.navigation.page, page);
 		amplify.unsubscribe(constants.events.user.changed, user);
 	}
-	
+
 	setTimeout(initialize, 0);
 });

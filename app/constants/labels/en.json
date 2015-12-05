@@ -12,8 +12,8 @@
 	"search": {
 		"title": "Search"
 	},
-	"account":{
-		"title":"Account"	
+	"account": {
+		"title": "Account"
 	},
 	"auth": {
 		"logout": {
@@ -37,6 +37,26 @@
 	"about": {
 		"title": "About us",
 		"message": "The site is temporary on maintenance. We will be glad to see you later."
+	},
+	"cars": {
+		"title": "Manage car list",
+		"message": "You can add or change list of your cars"
+	},
+	"stats": {
+		"title": "Statistics",
+		"message": "Extended statistic about car"
+	},
+	"refill": {
+		"title": "Add refill information",
+		"date": "Date",
+		"distance": "Distance",
+		"volume": "Volume",
+		"total": "Total",
+		"submit": "Add",
+		"period": "Period",
+		"mileage": "Mileage",
+		"consumption": "Consumption",
+		"cost": "Cost"
 	},
 	"errors": {
 		"components": {

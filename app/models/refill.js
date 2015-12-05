@@ -8,13 +8,15 @@ var _ = require('underscore');
 
 var RefillSchema = new Schema({
 	date: { type: Date, default: Date.now, required: true },
+	
 	distance: { type: Number, default: 0, required: true },
 	mileage: { type: Number, default: 0, required: true },
+	
 	volume: { type: Number, default: 0, required: true },
+	
 	total: { type: Number, default: 0, required: true },
 	cost: { type: Number, default: 0, required: true },
-	title: { type: String, default: '', trim: true },
-	body: { type: String, default: '', trim: true },
+	
 	user: { type: Schema.ObjectId, ref: 'User' }
 });
 

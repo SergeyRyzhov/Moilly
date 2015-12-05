@@ -3,11 +3,10 @@ define([
 	'underscore',
 	'storage',
 	'constants',
-	'localization',
-	'amplify'
-], function (ko, _, storage, constants, localization, amplify) {
+	'localization'
+], function (ko, _, storage, constants, localization) {
 	'use strict';
-
+	
 	return function (params) {
 		return {
 		}

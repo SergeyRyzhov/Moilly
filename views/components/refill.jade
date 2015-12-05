@@ -1,0 +1,43 @@
+.mdl-grid
+	.mdl-cell.mdl-cell--16-col
+		h4=labels.refill.title
+form(method='POST', action='/refill/add')
+	.mdl-grid
+		.mdl-cell.mdl-cell--6-col
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#date.mdl-textfield__input(type='date', name='date', required)
+				label.mdl-textfield__label(for='date')=labels.refill.date
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#distance.mdl-textfield__input(type='number', name='distance', required, min="1")
+				label.mdl-textfield__label(for='distance')=labels.refill.distance
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#volume.mdl-textfield__input(type='number', name='volume', required, min="1")
+				label.mdl-textfield__label(for='volume')=labels.refill.volume
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#total.mdl-textfield__input(type='number', name='total', required, min="1")
+				label.mdl-textfield__label(for='total')=labels.refill.total
+			br
+		.mdl-cell.mdl-cell--6-col
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#period.mdl-textfield__input(type='text', name='period', readonly)
+				label.mdl-textfield__label(for='period')=labels.refill.period
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#mileage.mdl-textfield__input(type='number', name='mileage', readonly)
+				label.mdl-textfield__label(for='mileage')=labels.refill.mileage
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#consumption.mdl-textfield__input(type='number', name='consumption', readonly)
+				label.mdl-textfield__label(for='consumption')=labels.refill.consumption
+			br
+			.mdl-textfield.mdl-js-textfield.mdl-textfield--floating-label
+				input#cost.mdl-textfield__input(type='number', name='cost', readonly)
+				label.mdl-textfield__label(for='cost')=labels.refill.cost
+			br
+	.mdl-grid
+		.mdl-cell.mdl-cell--10-col
+		.mdl-cell.mdl-cell--2-col
+			button.mdl-button.mdl-js-button.mdl-button--raised.mdl-js-ripple-effect.mdl-button--accent(type='submit')=labels.refill.submit
