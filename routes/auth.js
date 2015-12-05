@@ -50,30 +50,31 @@ function init(router) {
 			password: req.body.password,
 		});
 
-		user.save(function (err, record) {
-			if (err) {
-				res.send({
-					isValid: false,
-					message: err.toString()
-				});
-			} else {
-				logger.debug(user);
-				res.send(user);
+		user.save(function (err, user) {
+			var success = false;
+			var message = '';
+
+			if (!err) {
+				if (user.authenticate(req.body.password)) {
+					var publicModel = {
+						username: user.username,
+						email: user.email,
+						phone: user.phone,
+						isAuthenticated: true
+					};
+
+					authenticator.sign(res, publicModel);
+				}
 			}
-		});
-		return;
+			else {
+				message = err;
+			}
 
-		var data = _.clone(req.body);
-		delete data.password;
-
-		var user = data;
-		user.isAuthenticated = true;
-
-		authenticator.sign(res, user);
-
-		res.send({
-			user: user,
-			success: true
+			res.send({
+				message: message,
+				user: publicModel,
+				success: success
+			});
 		});
 	});
 }
