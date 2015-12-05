@@ -77,5 +77,10 @@ function init(router) {
 			});
 		});
 	});
+	
+	router.post('/auth/logout', function (req, res, next) {
+		authenticator.logout(res);
+		res.redirect('/');
+	});
 }
 module.exports = { init: init };

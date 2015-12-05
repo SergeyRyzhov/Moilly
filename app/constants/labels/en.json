@@ -13,6 +13,10 @@
 		"title": "Search"
 	},
 	"auth": {
+		"logout": {
+			"title": "Sign out",
+			"submit": "Log off"
+		},
 		"signin": {
 			"title": "Sign in",
 			"login": "Login (email, phone, nickname)",
