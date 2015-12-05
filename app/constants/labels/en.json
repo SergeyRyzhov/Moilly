@@ -15,7 +15,7 @@
 	"auth": {
 		"signin": {
 			"title": "Sign in",
-			"username": "Login (email, phone, nickname)",
+			"login": "Login (email, phone, nickname)",
 			"password": "Password",
 			"submit": "Sign in"
 		},

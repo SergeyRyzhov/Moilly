@@ -9,20 +9,15 @@ define([
 	'use strict';
 
 	return function (params) {
-		var user = params.user;
+		var user = params;
 
-		function publishUser() {
+		function initialize() {
 			amplify.publish(constants.events.user.changed, user);
 		}
 
-		function initialize() {
-			//amplify.subscribe(constants.events.user.required, publishUser);
+		function dispose() {
 		}
 
-		function dispose() {
-			//amplify.unsubscribe(constants.events.user.required, publishUser);
-		}
-publishUser();
 		initialize();
 		return {
 			dispose: dispose

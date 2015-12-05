@@ -1,29 +1,9 @@
 function CRUD() {
   var _ = require('underscore');
 
-  function getId(req) {
-    var _id = !_.isUndefined(req.params._id) ? req.params._id : null;
-    if (_id)
-      return _id;
-
-    var id = !_.isUndefined(req.params.id) ? req.params.id : _id;
-    if (id)
-      return id;
-
-    var _id = !_.isUndefined(req.query._id) ? req.query._id : null;
-    if (_id)
-      return _id;
-
-    var id = !_.isUndefined(req.query.id) ? req.query.id : _id;
-    if (id)
-      return id;
-
-    return null;
-  }
-
   function create(model, data, res) {
     var object = new model(data);
-    object.save(function(err, record) {
+    object.save(function (err, record) {
 
       if (err) {
         res.send({
@@ -44,7 +24,7 @@ function CRUD() {
   function update(model, id, data, res) {
     model.findByIdAndUpdate(id, {
       $set: data
-    }, function(err, record) {
+    }, function (err, record) {
       if (err) {
         res.send({
           isValid: false,
@@ -60,7 +40,7 @@ function CRUD() {
     });
   }
 
-  this.list = function(model, req, res, next) {
+  this.list = function (model, req, res, next) {
     //console.log('list req');
     var queryKey = 'API-QUERY';
     var populateKey = 'API-POPULATE';
@@ -129,14 +109,14 @@ function CRUD() {
     if (!_.isNull(sort)) query.sort(sort);
 
     //console.log(query);
-    query.exec(function(err, records) {
+    query.exec(function (err, records) {
       if (err) {
         res.send({
           isValid: false,
           message: err.toString()
         });
       } else {
-        query.count(function(err, cnt) {
+        query.count(function (err, cnt) {
           res.send({
             isValid: true,
             pagination: {
@@ -156,10 +136,10 @@ function CRUD() {
     return next;
   };
 
-  this.get = function(model, req, res, next) {
-    var id = getId(req);
+  this.get = function (model, req, res, next) {
+    var id = req.params.id;
 
-    model.findById(id, function(err, object) {
+    model.findById(id, function (err, object) {
       if (err) {
         res.send({
           isValid: false,
@@ -176,8 +156,8 @@ function CRUD() {
     return next;
   };
 
-  this.put = function(model, req, res, next) {
-    var id = getId(req);
+  this.put = function (model, req, res, next) {
+    var id = req.params.id;
 
     if (id) {
       var data = req.params;
@@ -189,8 +169,8 @@ function CRUD() {
     return next;
   }
 
-  this.post = function(model, req, res, next) {
-    var id = getId(req);
+  this.post = function (model, req, res, next) {
+    var id = req.params.id;
     var data = req.body;
     delete data._id;
     if (id) {
@@ -202,12 +182,11 @@ function CRUD() {
     return next;
   }
 
-  this.delete = function(model, req, res, next) {
-    var id = getId(req);
-    var id = getId(req);
+  this.delete = function (model, req, res, next) {
+    var id = req.params.id;
 
     if (id) {
-      model.findByIdAndRemove(id, function(err, record) {
+      model.findByIdAndRemove(id, function (err, record) {
         res.send({
           isValid: true,
           message: 'Deleted.'
@@ -218,7 +197,7 @@ function CRUD() {
     return next;
   }
 
-  this.configure = function(router, url, route) {
+  this.configure = function (router, url, route) {
     router.get(url, route.list);
     router.get(url + '/:id', route.get);
 

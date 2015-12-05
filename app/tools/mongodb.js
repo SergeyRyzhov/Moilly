@@ -3,7 +3,9 @@ var logger = require("./logger.js")('mongodb'),
 	mongoose = require('mongoose'),
 	config = require('./config.js');
 
-mongoose.connect(config.get('mongoose:uri'));
+var env = process.env;
+
+mongoose.connect(env.MONGOCONNECTION);
 
 var db = mongoose.connection;
 

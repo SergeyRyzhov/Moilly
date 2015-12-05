@@ -5,9 +5,10 @@ var Schema = mongodb.schema;
 var mongo = mongodb.mongo;
 
 var UserSchema = new Schema({
-  name: { type: String, default: '' },
   email: { type: String, default: '' },
   username: { type: String, default: '' },
+  phone: { type: String, default: '' },
+  
   hashed_password: { type: String, default: '' },
   salt: { type: String, default: '' }
 });
@@ -25,10 +26,6 @@ var validatePresenceOf = function (value) {
   return value && value.length;
 };
 
-UserSchema.path('name').validate(function (name) {
-  return name.length;
-}, 'Name cannot be blank');
-
 UserSchema.path('email').validate(function (email) {
   return email.length;
 }, 'Email cannot be blank');
@@ -43,9 +40,33 @@ UserSchema.path('email').validate(function (email, fn) {
   } else fn(true);
 }, 'Email already exists');
 
+UserSchema.path('username').validate(function (username, fn) {
+  var User = mongo.model('User');
+
+  if (this.isNew || this.isModified('username')) {
+    User.find({ username: username }).exec(function (err, users) {
+      fn(!err && users.length === 0);
+    });
+  } else fn(true);
+}, 'User name already exists');
+
 UserSchema.path('username').validate(function (username) {
   return username.length;
 }, 'Username cannot be blank');
+
+UserSchema.path('phone').validate(function (phone, fn) {
+  var User = mongo.model('User');
+
+  if (this.isNew || this.isModified('phone')) {
+    User.find({ phone: phone }).exec(function (err, users) {
+      fn(!err && users.length === 0);
+    });
+  } else fn(true);
+}, 'Phone already exists');
+
+UserSchema.path('phone').validate(function (phone) {
+  return phone.length;
+}, 'Phone cannot be blank');
 
 UserSchema.path('hashed_password').validate(function (hashed_password) {
   return hashed_password.length && this._password.length;

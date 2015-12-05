@@ -1,0 +1,36 @@
+{
+	"version": "0.2.0",
+	"configurations": [
+		{
+			"name": "Launch",
+			"type": "node",
+			"request": "launch",
+			"program": "index.js",
+			"stopOnEntry": false,
+			"args": [],
+			"cwd": ".",
+			"runtimeExecutable": null,
+			"runtimeArgs": [
+				"--nolazy"
+			],
+			"env": {
+				"NODE_ENV": "development",
+				"JWTSECRET":"I8L9o3v2e0Olya47",
+				"MONGOCONNECTION":"mongodb://moilly:ODjFaioRncgzQp68FYEa@ds049624.mongolab.com:49624/moilly",
+				"MONGOPASSWORD":"ODjFaioRncgzQp68FYEa",
+				"MONGOUSER":"moilly",
+				"PORT":3001
+
+			},
+			"externalConsole": false,
+			"sourceMaps": false,
+			"outDir": null
+		},
+		{
+			"name": "Attach",
+			"type": "node",
+			"request": "attach",
+			"port": 5858
+		}
+	]
+}
