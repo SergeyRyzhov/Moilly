@@ -8,6 +8,7 @@ requirejs.config({
         constants: './constants',
         localization: './tools/localization',
         navigator: './tools/navigator',
+        bindings: './tools/bindings',
 
         text: '../vendor/js/text',
         json: '../vendor/js/json2',
@@ -18,6 +19,7 @@ requirejs.config({
         purl: '../vendor/js/purl',
         amplify: '../vendor/js/amplify',
         sammy: '../vendor/js/sammy',
+        moment: '../vendor/js/moment-with-locales',
         angular: '../vendor/js/angular',
         
         components: './components',
@@ -34,7 +36,7 @@ requirejs.config({
             exports: '$'
         },
         moilly: {
-            deps: ['components/main', 'navigator']
+            deps: ['components/main', 'navigator', 'bindings']
         },
         'jquery.cookie': {
             deps: ['jquery']

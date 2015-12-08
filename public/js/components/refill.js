@@ -3,12 +3,13 @@ define([
 	'underscore',
 	'storage',
 	'constants',
-	'localization'
-], function (ko, _, storage, constants, localization) {
+	'localization',
+	'moment'
+], function (ko, _, storage, constants, localization, moment) {
 	'use strict';
-
+		
 	return function (params) {
-		var date = ko.observable(new Date());
+		var date = ko.observable(moment().format('YYYY-MM-DD'));
 		var distance = ko.observable(0);
 		var volume = ko.observable(0);
 		var total = ko.observable(0);
@@ -22,7 +23,7 @@ define([
 		});
 
 		var consumption = ko.pureComputed(function () {
-			return volume() / (distance() || 1);
+			return volume() / (distance() || 1) * 100;
 		});
 
 		var cost = ko.pureComputed(function () {
