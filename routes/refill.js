@@ -10,7 +10,7 @@ function init(router) {
 	var userModel = require('../app/models/user');
 
 	router.get('/api/refill', authenticator.midleware, function (req, res, next) {
-		refillModel.find({}, function (err, refills) {
+		refillModel.list({}, function (err, refills) {
 			res.send({
 				message: err,
 				refills: refills,
@@ -37,18 +37,7 @@ function init(router) {
 					var message = '';
 
 					if (!err) {
-						//if (user.authenticate(req.body.password)) {
-						/*var publicModel = {
-							username: user.username,
-							email: user.email,
-							phone: user.phone,
-							isAuthenticated: true
-						};
-
-						authenticator.sign(res, publicModel);
-						*/
 						success = true;
-						//}
 					}
 					else {
 						message = err;
