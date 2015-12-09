@@ -47,14 +47,12 @@ function init(router) {
 	});
 
 	router.post('/auth/signup', function (req, res, next) {
-		var user = userModel.create({
+		userModel.create({
 			username: req.body.username,
 			email: req.body.email,
 			phone: req.body.phone,
 			password: req.body.password,
-		});
-
-		user.save(function (err, user) {
+		}, function (err, user) {
 			var success = false;
 			var message = '';
 

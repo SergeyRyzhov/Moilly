@@ -10,7 +10,7 @@ define([
 		
 	return function (params) {
 		var date = ko.observable(moment().format('YYYY-MM-DD'));
-		var distance = ko.observable(0);
+		var mileage = ko.observable(0);
 		var volume = ko.observable(0);
 		var total = ko.observable(0);
 
@@ -18,12 +18,12 @@ define([
 			return '1 неделя';
 		});
 
-		var mileage = ko.pureComputed(function () {
-			return 100000 + distance();
+		var distance = ko.pureComputed(function () {
+			return 100000 + mileage();
 		});
 
 		var consumption = ko.pureComputed(function () {
-			return volume() / (distance() || 1) * 100;
+			return volume() / (mileage() || 1) * 100;
 		});
 
 		var cost = ko.pureComputed(function () {

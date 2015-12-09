@@ -104,7 +104,7 @@ UserSchema.methods = {
 
 UserSchema.statics = {
   load: function (options, cb) {
-    options.select = options.select || 'name username';
+    options.select = options.select || '_id name username';
     this.findOne(options.criteria)
       .select(options.select)
       .exec(cb);
