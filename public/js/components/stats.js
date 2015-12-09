@@ -43,35 +43,36 @@ define([
 			return summedDistance(all, '', rawRefill.date);
 		});
 
-		var volumeBefore = ko.pureComputed(function () {
-			return summedVolume(all, '', rawRefill.date);
+		var totalVolume = ko.pureComputed(function () {
+			return summedVolume(all, '', rawRefill.date) + volume();
 		});
 
 		var distance = ko.pureComputed(function () {
 			return distanceBefore() + mileage();
 		});
 
-		var consumptionCommon = ko.pureComputed(function () {
-			return (volumeBefore() / (distanceBefore() || 0) * 100).toFixed(2);
+		var commonConsumption = ko.pureComputed(function () {
+			return totalVolume() / (distance() || 100) * 100;
 		});
 
 		var consumption = ko.pureComputed(function () {
-			return (volume() / (mileage() || 1) * 100).toFixed(2);
+			return volume() / (mileage() || 1) * 100;
 		});
 
 		var cost = ko.pureComputed(function () {
-			return (total() / (volume() || 1)).toFixed(2);
+			return total() / (volume() || 1);
 		});
 
 		return {
 			date: date,
 			distance: distance,
+			totalVolume: totalVolume,
 			volume: volume,
 			total: total,
 			period: period,
 			mileage: mileage,
 			consumption: consumption,
-			consumptionCommon: consumptionCommon,
+			commonConsumption: commonConsumption,
 			cost: cost
 		};
 	}

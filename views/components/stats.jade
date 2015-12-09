@@ -13,6 +13,7 @@
 					th Пробег
 					th Объём
 					th Расход
+					th Общий объём
 					th Расход за всё время
 					th Сумма
 					th Стоимость
@@ -20,10 +21,11 @@
 				tr
 					//td.mdl-data-table__cell--non-numeric
 					td(data-bind='text:date')
-					td(data-bind='text:distance')
-					td(data-bind='text:mileage')
-					td(data-bind='text:volume')
-					td(data-bind='text:consumption')
-					td(data-bind='text:consumptionCommon')
-					td(data-bind='text:total')
-					td(data-bind='text:cost')
+					td(data-bind='number:distance')
+					td(data-bind='number:mileage')
+					td(data-bind='number:volume')
+					td(data-bind='number:consumption')
+					td(data-bind='number:totalVolume')
+					td(data-bind='number:commonConsumption')
+					td(data-bind='number:total')
+					td(data-bind='number:cost')
