@@ -30,10 +30,25 @@ define([
 				}, 0);
 		}
 
+		function summedTotal(refills, from, to) {
+			return _.reduce(_.filter(refills,
+				function (refill) {
+					return refill.date < to;
+				}),
+				function (memo, refill) {
+					return memo + refill.total;
+				}, 0);
+		}
+
 		var date = ko.observable(moment(rawRefill.date).format('YYYY-MM-DD'));
 		var mileage = ko.observable(rawRefill.mileage);
 		var volume = ko.observable(rawRefill.volume);
 		var total = ko.observable(rawRefill.total);
+		
+		var commonTotal = ko.pureComputed(function () {
+			return summedTotal(all, '', rawRefill.date) + total();
+		});
+
 
 		/*var period = ko.pureComputed(function () {
 			return '1 неделя';
@@ -88,8 +103,8 @@ define([
 				perYear: mock
 			},
 			price: {
-				total: total,
-				current: cost,
+				total: commonTotal,
+				current: total,
 				perMonth: mock,
 				perQuarter: mock,
 				perYear: mock,
