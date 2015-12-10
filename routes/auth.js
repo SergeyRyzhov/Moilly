@@ -21,6 +21,7 @@ function init(router) {
 			if (!err) {
 				if (user.authenticate(req.body.password)) {
 					var publicModel = {
+						_id: user._id,
 						username: user.username,
 						email: user.email,
 						phone: user.phone,

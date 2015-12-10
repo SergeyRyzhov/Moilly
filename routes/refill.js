@@ -7,10 +7,10 @@ function init(router) {
 	var _ = require('underscore');
 
 	var refillModel = require('../app/models/refill');
-	var userModel = require('../app/models/user');
+	//var userModel = require('../app/models/user');
 
 	router.get('/api/refill', authenticator.midleware, function (req, res, next) {
-		refillModel.list({}, function (err, refills) {
+		refillModel.list({ user: req.user._id }, function (err, refills) {
 			res.send({
 				message: err,
 				refills: refills,
@@ -18,42 +18,48 @@ function init(router) {
 			})
 		});
 	});
+	
+	router.post('/api/refill/:id/:action', authenticator.midleware, function (req, res, next) {
+		// refillModel.list({ user: req.user._id }, function (err, refills) {
+		// 	res.send({
+		// 		message: err,
+		// 		refills: refills,
+		// 		success: !err
+		// 	})
+		// });
+	});
 
 	router.all('/api/refill/:culture/:action', authenticator.midleware, function (req, res, next) {
 		res.send(req.user);
 	});
 
 	router.post('/refill/add', function (req, res, next) {
-		userModel.findOne(
-			{ username: req.user.username }, function (err, user) {
-				refillModel.create({
-					date: req.body.date,
-					mileage: req.body.mileage,
-					volume: req.body.volume,
-					total: req.body.total,
-					user: user._id
-				}, function (err, refill) {
-					var success = false;
-					var message = '';
+		refillModel.create({
+			date: req.body.date,
+			mileage: req.body.mileage,
+			volume: req.body.volume,
+			total: req.body.total,
+			user: req.user._id
+		}, function (err, refill) {
+			var success = false;
+			var message = '';
 
-					if (!err) {
-						success = true;
-					}
-					else {
-						message = err;
-					}
+			if (!err) {
+				success = true;
+			}
+			else {
+				message = err;
+			}
 
-					if (success)
-						res.redirect('/');
-					else
-						res.send({
-							message: message,
-							refill: refill,
-							success: success
-						});
+			if (success)
+				res.redirect('/');
+			else
+				res.send({
+					message: message,
+					refill: refill,
+					success: success
 				});
-			});
-
+		});
 	});
 }
 module.exports = { init: init };
