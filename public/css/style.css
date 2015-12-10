@@ -1,0 +1,12 @@
+td > p > span {
+	text-align: right;
+}
+
+td > p > label {
+	text-align: left;
+	padding-right: 20px;
+}
+
+td > p > label::after {
+	content: ':'
+}

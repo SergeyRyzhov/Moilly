@@ -35,9 +35,9 @@ define([
 		var volume = ko.observable(rawRefill.volume);
 		var total = ko.observable(rawRefill.total);
 
-		var period = ko.pureComputed(function () {
+		/*var period = ko.pureComputed(function () {
 			return '1 неделя';
-		});
+		});*/
 
 		var distanceBefore = ko.pureComputed(function () {
 			return summedDistance(all, '', rawRefill.date);
@@ -62,18 +62,40 @@ define([
 		var cost = ko.pureComputed(function () {
 			return total() / (volume() || 1);
 		});
-
+		var mock = '';
 		return {
 			date: date,
-			distance: distance,
-			totalVolume: totalVolume,
-			volume: volume,
-			total: total,
-			period: period,
-			mileage: mileage,
-			consumption: consumption,
-			commonConsumption: commonConsumption,
-			cost: cost
+			mileage: {
+				total: distance,
+				current: mileage,
+				perMonth: mock,
+				perQuarter: mock,
+				perYear: mock,
+				perLiter: mock
+			},
+			volume: {
+				total: totalVolume,
+				current: volume,
+				perMonth: mock,
+				perQuarter: mock,
+				perYear: mock
+			},
+			consumption: {
+				total: commonConsumption,
+				current: consumption,
+				perMonth: mock,
+				perQuarter: mock,
+				perYear: mock
+			},
+			price: {
+				total: total,
+				current: cost,
+				perMonth: mock,
+				perQuarter: mock,
+				perYear: mock,
+				perLiter: cost,
+				perKilometer: mock
+			}
 		};
 	}
 	return function (params) {

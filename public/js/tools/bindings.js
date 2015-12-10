@@ -10,7 +10,13 @@ define([
 
 	ko.bindingHandlers.number = {
 		init: function (el, valueAccessor, allBindingsAccessor, viewModel) {
-			el.textContent = Number(ko.unwrap(valueAccessor())).toFixed(2);
+			var source = ko.unwrap(valueAccessor());
+			if(!source){
+				return;
+			}
+			
+			var value = Number(source);
+			el.textContent = isNaN(value) ? source : value.toFixed(2);
 		}
 	};
 });
