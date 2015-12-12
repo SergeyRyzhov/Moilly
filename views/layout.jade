@@ -23,8 +23,9 @@ html(lang=culture)
           .mdl-layout__header-row
             span.mdl-layout-title= labels.site.title
             .mdl-layout-spacer
-            a.mdl-button.mdl-js-button.mdl-button--fab.mdl-js-ripple-effect.mdl-button--colored(href='#refill')
-              i.material-icons add
+            if user.isAuthenticated
+              a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(href='#refill')
+                i.material-icons add
             - var langAttributes = {'data-bind': {component: {name: 'language-selector', params: labels.localization }}};
             div&attributes(langAttributes)
             // .mdl-textfield.mdl-js-textfield.mdl-textfield--expandable.mdl-textfield--floating-label.mdl-textfield--align-right

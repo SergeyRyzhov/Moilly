@@ -13,7 +13,14 @@
 		"title": "Search"
 	},
 	"account": {
-		"title": "Account"
+		"title": "Account",
+		"password":{
+			"title":"Change password",
+			"old":"Old password",
+			"new":"New password",
+			"new2":"New password",
+			"submit":"Change"
+		}
 	},
 	"auth": {
 		"logout": {

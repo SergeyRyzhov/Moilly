@@ -21,7 +21,6 @@ define([
 		menu.run();
 	}
 
-
 	function upgradeDom() {
 		componentHandler.upgradeDom();
 		setTimeout(upgradeDom, constants.common.bindingTimeout);

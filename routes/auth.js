@@ -7,6 +7,31 @@ function init(router) {
 
 	var userModel = require('../app/models/user');
 
+	router.post('/auth/password', function (req, res, next) {
+		userModel.findOne({
+			_id: req.user._id
+		}, function (err, user) {
+			var success = false;
+			var message = '';
+
+			if (!err) {
+				
+					success = true;
+			}
+			else {
+				message = err;
+			}
+
+			if (success)
+				res.redirect('/');
+			else
+				res.send({
+					message: message,
+					success: success
+				});
+		});
+	});
+
 	router.post('/auth/signin', function (req, res, next) {
 		userModel.findOne({
 			$or: [
