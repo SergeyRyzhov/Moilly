@@ -8,6 +8,7 @@ var logger = require('./logger')('Authentificator');
 
 var secret = new Buffer(env.JWTSECRET, 'base64');
 var anonymous = { isAuthenticated: false };
+var cookieAge = 1000 * 60 * 60 * 24 * 7;
 
 var jwtmidlware = expressJwt({
 	secret: secret,
@@ -24,14 +25,14 @@ var jwtmidlware = expressJwt({
 
 function sign(res, model) {
 	var token = jwt.sign(model, secret);
-	res.cookie('authorization', token);
+	res.cookie('authorization', token, { maxAge: cookieAge, httpOnly: true });
 	return token;
 }
 
 
 function logout(res) {
 	var token = jwt.sign(anonymous, secret);
-	res.cookie('authorization', token);
+	res.cookie('authorization', token, { maxAge: cookieAge, httpOnly: true });
 	return token;
 }
 
