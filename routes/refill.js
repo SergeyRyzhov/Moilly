@@ -10,7 +10,7 @@ function init(router) {
 	//var userModel = require('../app/models/user');
 
 	router.get('/api/refill', authenticator.midleware, function (req, res, next) {
-		refillModel.list({ user: req.user._id }, function (err, refills) {
+		refillModel.list({ criteria: { user: req.user._id } }, function (err, refills) {
 			res.send({
 				message: err,
 				refills: refills,
@@ -18,7 +18,7 @@ function init(router) {
 			})
 		});
 	});
-	
+
 	router.post('/api/refill/:id/:action', authenticator.midleware, function (req, res, next) {
 		// refillModel.list({ user: req.user._id }, function (err, refills) {
 		// 	res.send({

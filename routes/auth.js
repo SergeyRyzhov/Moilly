@@ -43,7 +43,7 @@ function init(router) {
 			var success = false;
 			var message = '';
 
-			if (!err) {
+			if (!err && user) {
 				if (user.authenticate(req.body.password)) {
 					var publicModel = {
 						_id: user._id,
