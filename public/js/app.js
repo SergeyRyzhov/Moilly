@@ -4,8 +4,9 @@ define([
 	'utils',
 	'storage',
 	'constants',
-	'amplify'
-], function (_, ko, utils, storage, constants, amplify) {
+	'amplify',
+	'responsejs'
+], function (_, ko, utils, storage, constants, amplify, responsejs) {
 	var user = ko.observable({ isAnonymous: true });
 	var page = ko.observable(utils.purl.attr('fragment'));
 
@@ -21,6 +22,11 @@ define([
 		amplify.subscribe(constants.events.user.changed, user);
 
 		//amplify.publish(constants.events.user.required);
+		
+		
+		responsejs.create({
+            breakpoints: [0, 480, 481]
+        });
 
 		ko.applyBindings({
 			page: displayPage,

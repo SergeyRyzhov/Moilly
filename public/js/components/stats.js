@@ -5,8 +5,9 @@ define([
 	'constants',
 	'localization',
 	'amplify',
-	'moment'
-], function (ko, _, storage, constants, localization, amplify, moment) {
+	'moment',
+	'responsejs'
+], function (ko, _, storage, constants, localization, amplify, moment, responsejs) {
 	'use strict';
 
 	function refillViewModel(all, rawRefill) {
@@ -44,7 +45,7 @@ define([
 		var mileage = ko.observable(rawRefill.mileage);
 		var volume = ko.observable(rawRefill.volume);
 		var total = ko.observable(rawRefill.total);
-		
+
 		var commonTotal = ko.pureComputed(function () {
 			return summedTotal(all, '', rawRefill.date) + total();
 		});
@@ -113,9 +114,18 @@ define([
 			}
 		};
 	}
+
 	return function (params) {
 		var refills = ko.observableArray();
+		var isMobile = ko.observable(false);
 
+		responsejs.action(function () {
+			if (responsejs.band(0, 480)) {
+				isMobile(true);
+			} else {
+				isMobile(false);
+			}
+        });
 
 		var refillsText = ko.pureComputed(function () {
 			return ko.toJSON(refills);
@@ -137,7 +147,8 @@ define([
 
 		return {
 			refills: refills,
-			refillsText: refillsText
+			refillsText: refillsText,
+			isMobile: isMobile
 		}
 	};
 });

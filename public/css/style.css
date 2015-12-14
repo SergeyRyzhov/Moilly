@@ -1,3 +1,5 @@
+/*Statistics*/
+/*Common*/
 td > p > span {
 	text-align: right;
 }
@@ -8,5 +10,43 @@ td > p > label {
 }
 
 td > p > label::after {
+	content: ':'
+}
+
+.scrollx{
+	overflow-x: auto;
+}
+.scroll{
+	overflow-y: auto;
+}
+.scroll{
+	overflow: auto;
+}
+
+/*Modile header*/
+td > h5 > span {
+	text-align: right;
+}
+
+td > h5 > label {
+	text-align: left;
+	padding-right: 20px;
+}
+
+td > h5 > label::after {
+	content: ':'
+}
+
+/*Mobile content*/
+td > div > p > span {
+	text-align: right;
+}
+
+td > div > p > label {
+	text-align: left;
+	padding-right: 20px;
+}
+
+td > div > p >label::after {
 	content: ':'
 }

@@ -21,7 +21,8 @@ requirejs.config({
         sammy: '../vendor/js/sammy',
         moment: '../vendor/js/moment-with-locales',
         angular: '../vendor/js/angular',
-        
+        responsejs: '../vendor/js/response',
+
         components: './components',
     },
     shim: {
@@ -41,9 +42,12 @@ requirejs.config({
         'jquery.cookie': {
             deps: ['jquery']
         },
-        'sammy': {
+        sammy: {
             deps: ['jquery']
         },
+        responsejs: {
+            deps: ['jquery']
+        }
     },
     bundles: {
     }
