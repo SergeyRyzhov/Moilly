@@ -8,6 +8,8 @@ npm-debug.log*
 
 # Dependency directory
 node_modules/
+# Cache
+cache/*
 
 # Other
 downloads/
