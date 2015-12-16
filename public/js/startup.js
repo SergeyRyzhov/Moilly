@@ -13,7 +13,7 @@ requirejs.config({
         text: '../vendor/js/text',
         json: '../vendor/js/json2',
         underscore: '../vendor/js/underscore',
-        knockout: '../vendor/js/knockout-3.4.0.debug',
+        knockout: '../vendor/js/knockout-3.4.0',
         jquery: '../vendor/js/jquery-2.1.4',
         'jquery.cookie': '../vendor/js/jquery.cookie',
         purl: '../vendor/js/purl',
