@@ -10,10 +10,6 @@ define([
 			navigation: {
 				page: 'moilly.navigation.page',
 				any: 'moilly.navigation.any'
-			},
-			user: {
-				required: 'moilly.user.required',
-				changed: 'moilly.user.changed'
 			}
 		},
 		common: {

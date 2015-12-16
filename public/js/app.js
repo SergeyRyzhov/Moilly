@@ -7,37 +7,29 @@ define([
 	'amplify',
 	'responsejs'
 ], function (_, ko, utils, storage, constants, amplify, responsejs) {
-	var user = ko.observable({ isAnonymous: true });
 	var page = ko.observable(utils.purl.attr('fragment'));
 
 	var displayPage = ko.pureComputed(function () {
-		var usr = user();
-		var notAuth = !usr || !usr.isAuthenticated;
-
-		return notAuth ? 'auth' : page() || 'refill';
+		return page() || 'refill';
 	});
 
 	function initialize() {
 		amplify.subscribe(constants.events.navigation.page, page);
-		amplify.subscribe(constants.events.user.changed, user);
 
-		//amplify.publish(constants.events.user.required);
-		
-		
+
 		responsejs.create({
             breakpoints: [0, 480, 481]
         });
 
 		ko.applyBindings({
-			page: displayPage,
-			user: user
+			page: displayPage
 		});
 	}
 
 	function dispose() {
 		amplify.unsubscribe(constants.events.navigation.page, page);
-		amplify.unsubscribe(constants.events.user.changed, user);
 	}
 
+	//initialize();
 	setTimeout(initialize, 0);
 });

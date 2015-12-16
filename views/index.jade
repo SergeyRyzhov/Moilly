@@ -5,9 +5,12 @@ block headerscripts
   script(src="/vendor/js/require.js", data-main="/js/startup")
   link(rel='stylesheet', href='/css/style.css')
 block content
-  // ko if: page
-  // ko component: {name: page, params: { user: user }}
-  // /ko
-  // /ko
-  - var authenticatorAttributes = {'data-bind': {component: {name: 'authenticator', params: user }}};
-  div&attributes(authenticatorAttributes)
+  if user.isAuthenticated
+    // ko component: {name: page, params: { }}
+    // /ko
+    // /ko
+  
+  if !user.isAuthenticated
+    // ko component: {name: 'auth', params: { }}
+    // /ko
+    // /ko
