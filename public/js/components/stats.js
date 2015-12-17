@@ -26,7 +26,7 @@ define([
 		var startOfQuarter = moment(rawRefill.date).startOf('quarter');
 		var startOfYear = moment(rawRefill.date).startOf('year');
 
-		var date = ko.observable(moment(rawRefill.date).format('dddd, MMMM Do YYYY'));
+		var date = ko.observable(moment(rawRefill.date).format('dddd, LL'));
 		// var date = ko.observable(moment(rawRefill.date).calendar());
 		var mileage = ko.observable(rawRefill.mileage);
 		var volume = ko.observable(rawRefill.volume);

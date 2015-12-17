@@ -6,7 +6,7 @@ td > p > span {
 
 td > p > label {
 	text-align: left;
-	padding-right: 20px;
+	padding-right: 10%;
 }
 
 td > p > label::after {
@@ -42,14 +42,14 @@ td > p > label::after {
 	}
  }
 
-/*Modile header*/
+/*Mobile header*/
 td > h5 > span {
 	text-align: right;
 }
 
 td > h5 > label {
 	text-align: left;
-	padding-right: 20px;
+	padding-right: 5%;
 }
 
 td > h5 > label::after {
@@ -63,7 +63,7 @@ td > div > p > span {
 
 td > div > p > label {
 	text-align: left;
-	padding-right: 20px;
+	padding-right: 10%;
 }
 
 td > div > p >label::after {
