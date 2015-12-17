@@ -1,6 +1,6 @@
 requirejs.config({
     baseUrl: '/js',
-    //waitSeconds: 0,
+    waitSeconds: 0,
     paths: {
         moilly: './app',
         storage: './tools/storage',
