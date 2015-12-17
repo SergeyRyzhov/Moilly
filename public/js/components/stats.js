@@ -10,107 +10,83 @@ define([
 ], function (ko, _, storage, constants, localization, amplify, moment, responsejs) {
 	'use strict';
 
-	function refillViewModel(all, rawRefill) {
-		function summedDistance(refills, from, to) {
+	function refillViewModel(refills, rawRefill) {
+		function computeSumm(from, to, field) {
 			return _.reduce(_.filter(refills,
 				function (refill) {
-					return refill.date < to;
+					var now = moment(refill.date);
+					return now < to && (!from || now > from);
 				}),
 				function (memo, refill) {
-					return memo + refill.mileage;
+					return memo + refill[field];
 				}, 0);
 		}
 
-		function summedVolume(refills, from, to) {
-			return _.reduce(_.filter(refills,
-				function (refill) {
-					return refill.date < to;
-				}),
-				function (memo, refill) {
-					return memo + refill.volume;
-				}, 0);
-		}
-
-		function summedTotal(refills, from, to) {
-			return _.reduce(_.filter(refills,
-				function (refill) {
-					return refill.date < to;
-				}),
-				function (memo, refill) {
-					return memo + refill.total;
-				}, 0);
-		}
+		var startOfMonth = moment().startOf('month');
+		var startOfQuarter = moment().startOf('quarter');
+		var startOfYear = moment().startOf('year');
 
 		var date = ko.observable(moment(rawRefill.date).format('YYYY-MM-DD'));
 		var mileage = ko.observable(rawRefill.mileage);
 		var volume = ko.observable(rawRefill.volume);
 		var total = ko.observable(rawRefill.total);
 
-		var commonTotal = ko.pureComputed(function () {
-			return summedTotal(all, '', rawRefill.date) + total();
-		});
+		function totalPerPeriod(start) {
+			return computeSumm(start, moment(rawRefill.date), 'total') + total();
+		}
 
+		function volumePerPeriod(start) {
+			return computeSumm(start, moment(rawRefill.date), 'volume') + volume();
+		}
 
-		/*var period = ko.pureComputed(function () {
-			return '1 неделя';
-		});*/
+		function mileagePerPeriod(start) {
+			return computeSumm(start, moment(rawRefill.date), 'mileage') + mileage();
+		}
 
-		var distanceBefore = ko.pureComputed(function () {
-			return summedDistance(all, '', rawRefill.date);
-		});
-
-		var totalVolume = ko.pureComputed(function () {
-			return summedVolume(all, '', rawRefill.date) + volume();
-		});
-
-		var distance = ko.pureComputed(function () {
-			return distanceBefore() + mileage();
-		});
-
-		var commonConsumption = ko.pureComputed(function () {
-			return totalVolume() / (distance() || 100) * 100;
-		});
-
-		var consumption = ko.pureComputed(function () {
-			return volume() / (mileage() || 1) * 100;
-		});
+		function consumption(vol, mil) {
+			return vol / (mil || 100) * 100;
+		};
 
 		var cost = ko.pureComputed(function () {
 			return total() / (volume() || 1);
 		});
-		var mock = '';
+
 		return {
 			date: date,
 			mileage: {
-				total: distance,
+				total: mileagePerPeriod(),
 				current: mileage,
-				perMonth: mock,
-				perQuarter: mock,
-				perYear: mock,
-				perLiter: mock
+				perMonth: mileagePerPeriod(startOfMonth),
+				perQuarter: mileagePerPeriod(startOfQuarter),
+				perYear: mileagePerPeriod(startOfYear),
+				perLiter: ko.pureComputed(function () {
+					return mileagePerPeriod() / volumePerPeriod();
+				})
 			},
 			volume: {
-				total: totalVolume,
+				total: volumePerPeriod(),
 				current: volume,
-				perMonth: mock,
-				perQuarter: mock,
-				perYear: mock
+				perMonth: volumePerPeriod(startOfMonth),
+				perQuarter: volumePerPeriod(startOfQuarter),
+				perYear: volumePerPeriod(startOfYear),
 			},
 			consumption: {
-				total: commonConsumption,
-				current: consumption,
-				perMonth: mock,
-				perQuarter: mock,
-				perYear: mock
+				total: consumption(volumePerPeriod(), mileagePerPeriod()),
+				current: consumption(volume(), mileage()),
+				perMonth: consumption(volumePerPeriod(startOfMonth), mileagePerPeriod(startOfMonth)),
+				perQuarter: consumption(volumePerPeriod(startOfQuarter), mileagePerPeriod(startOfQuarter)),
+				perYear: consumption(volumePerPeriod(startOfYear), mileagePerPeriod(startOfYear))
 			},
 			price: {
-				total: commonTotal,
+				total: totalPerPeriod(),
 				current: total,
-				perMonth: mock,
-				perQuarter: mock,
-				perYear: mock,
+				perMonth: totalPerPeriod(startOfMonth),
+				perQuarter: totalPerPeriod(startOfQuarter),
+				perYear: totalPerPeriod(startOfYear),
 				perLiter: cost,
-				perKilometer: mock
+				perKilometer: ko.pureComputed(function () {
+					return totalPerPeriod() / mileagePerPeriod();
+				})
 			}
 		};
 	}
