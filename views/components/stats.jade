@@ -7,8 +7,7 @@
 		table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp(data-bind="visible:isMobile")
 			tbody(data-bind="foreach:refills")
 				tr
-					td
-					td
+					td(colspan=2)
 						h5
 							label= sLabels.date
 							span.mdl-data-table__cell--non-numeric(data-bind="text:date")
