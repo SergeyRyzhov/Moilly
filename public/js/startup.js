@@ -10,8 +10,19 @@ requirejs.config({
         navigator: './tools/navigator',
         bindings: './tools/bindings',
 
-        text: '../vendor/js/text',
-        json: '../vendor/js/json2',
+        //json: '../vendor/js/json2',
+        text: '../vendor/js/text',        
+        async: '../vendor/js/async',
+        font: '../vendor/js/font',
+        goog: '../vendor/js/goog',
+        image: '../vendor/js/image',
+        json: '../vendor/js/json',
+        noext: '../vendor/js/noext',
+        mdown: '../vendor/js/mdown',
+        propertyParser : '../vendor/js/propertyParser',
+        markdownConverter : '../vendor/js/Markdown.Converter',
+        
+        
         underscore: '../vendor/js/underscore',
         knockout: '../vendor/js/knockout-3.4.0',
         jquery: '../vendor/js/jquery-2.1.4',

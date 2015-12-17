@@ -6,8 +6,9 @@ define([
 	'localization',
 	'amplify',
 	'moment',
-	'responsejs'
-], function (ko, _, storage, constants, localization, amplify, moment, responsejs) {
+	'responsejs',
+	'json!/api/refill'
+], function (ko, _, storage, constants, localization, amplify, moment, responsejs, refillsData) {
 	'use strict';
 
 	function refillViewModel(refills, rawRefill) {
@@ -108,19 +109,9 @@ define([
 			return ko.toJSON(refills);
 		});
 
-		amplify.request.define("refill.list", "ajax", {
-			url: "/api/refill",
-			dataType: "json",
-			type: "GET",
-			cache: false
-		});
-
-		amplify.request('refill.list', {}, function (res) {
-			var refillsData = res.refills;
-			refills(_.map(refillsData, function (r) {
-				return refillViewModel(refillsData, r);
-			}));
-		});
+		refills(_.map(refillsData.refills, function (r) {
+			return refillViewModel(refillsData.refills, r);
+		}));
 
 		return {
 			refills: refills,
