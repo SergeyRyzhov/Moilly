@@ -66,7 +66,8 @@
 				"perMonth": "За месяц",
 				"perQuarter": "За квартал",
 				"perYear": "За год",
-				"perLiter": "За литр"
+				"perLiter": "За литр",
+				"unit": "км."
 			},
 			"volume": {
 				"title": "Объём",
@@ -74,7 +75,8 @@
 				"current": "Текущий",
 				"perMonth": "За месяц",
 				"perQuarter": "За квартал",
-				"perYear": "За год"
+				"perYear": "За год",
+				"unit": "л."
 			},
 			"consumption": {
 				"title": "Расход",
@@ -82,7 +84,8 @@
 				"current": "Текущий",
 				"perMonth": "За месяц",
 				"perQuarter": "За квартал",
-				"perYear": "За год"
+				"perYear": "За год",
+				"unit": "л/100км."
 			},
 			"price": {
 				"title": "Стоимость",
@@ -92,7 +95,8 @@
 				"perQuarter": "За квартал",
 				"perYear": "За год",
 				"perLiter": "За литр",
-				"perKilometer": "За километр"
+				"perKilometer": "За километр",
+				"unit": "руб."
 			}
 		}
 	},
