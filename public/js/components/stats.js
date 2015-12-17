@@ -22,11 +22,12 @@ define([
 				}, 0);
 		}
 
-		var startOfMonth = moment().startOf('month');
-		var startOfQuarter = moment().startOf('quarter');
-		var startOfYear = moment().startOf('year');
+		var startOfMonth = moment(rawRefill.date).startOf('month');
+		var startOfQuarter = moment(rawRefill.date).startOf('quarter');
+		var startOfYear = moment(rawRefill.date).startOf('year');
 
-		var date = ko.observable(moment(rawRefill.date).format('YYYY-MM-DD'));
+		var date = ko.observable(moment(rawRefill.date).format('dddd, MMMM Do YYYY'));
+		// var date = ko.observable(moment(rawRefill.date).calendar());
 		var mileage = ko.observable(rawRefill.mileage);
 		var volume = ko.observable(rawRefill.volume);
 		var total = ko.observable(rawRefill.total);
