@@ -23,6 +23,25 @@ td > p > label::after {
 	overflow: auto;
 }
 
+	.site-title {
+		display: block;
+	}
+	
+	.site-short-title{		
+		display: none;
+	}
+ 
+ 
+@media (max-width: 480px) {
+	.site-title{		
+		display: none;
+	}
+	
+	.site-short-title{
+		display: block;
+	}
+ }
+
 /*Modile header*/
 td > h5 > span {
 	text-align: right;

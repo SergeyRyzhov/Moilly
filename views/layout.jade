@@ -21,7 +21,8 @@ html(lang=culture)
     .mdl-layout.mdl-js-layout.mdl-layout--fixed-drawer.mdl-layout--fixed-header
       header.mdl-layout__header
           .mdl-layout__header-row
-            span.mdl-layout-title= labels.site.title
+            span.mdl-layout-title.site-title= labels.site.title
+            span.mdl-layout-title.site-short-title= labels.site.shortTitle
             .mdl-layout-spacer
             if user.isAuthenticated
               a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(href='#refill')
