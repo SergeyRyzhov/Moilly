@@ -19,11 +19,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-
-var compression = require('compression');
-var minify = require('express-minify');
-app.use(compression());
-app.use(minify({ cache: path.join(__dirname, 'cache') }));
+///Compression and minifications
+if (app.get('env') === 'development') {
+}
+else {
+  var compression = require('compression');
+  var minify = require('express-minify');
+  app.use(compression());
+  app.use(minify({ cache: path.join(__dirname, 'cache') }));
+}
 
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(path.join(__dirname, 'vendor')));

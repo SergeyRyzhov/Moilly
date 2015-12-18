@@ -18,7 +18,7 @@ define([
 
 
 		responsejs.create({
-            breakpoints: [0, 480, 481]
+            breakpoints: [0, 480, 481, 1280, 1281]
         });
 
 		ko.applyBindings({

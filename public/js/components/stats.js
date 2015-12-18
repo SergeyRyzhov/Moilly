@@ -96,13 +96,11 @@ define([
 	return function (params) {
 		var refills = ko.observableArray();
 		var isMobile = ko.observable(false);
+		var isWide = ko.observable(false);
 
 		responsejs.action(function () {
-			if (responsejs.band(0, 480)) {
-				isMobile(true);
-			} else {
-				isMobile(false);
-			}
+			isMobile(responsejs.band(0, 480));
+			isWide(responsejs.band(1281));
         });
 
 		var refillsText = ko.pureComputed(function () {
@@ -116,7 +114,8 @@ define([
 		return {
 			refills: refills,
 			refillsText: refillsText,
-			isMobile: isMobile
+			isMobile: isMobile,
+			isWide: isWide
 		}
 	};
 });

@@ -122,7 +122,7 @@
 								label= sLabels.price.perKilometer
 								span(data-bind="number: perKilometer")= sLabels.na
 								
-		table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp(data-bind="hidden:isMobile")
+		table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp(data-bind="hidden:isMobile, hidden:isWide")
 			thead
 				tr
 					th.mdl-data-table__cell--non-numeric= sLabels.date
@@ -214,3 +214,79 @@
 						p
 							label= sLabels.price.perKilometer
 							span(data-bind="number: perKilometer")= sLabels.na
+							
+		table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp(data-bind="visible:isWide")
+			thead
+				tr
+					th.mdl-data-table__cell--non-numeric= sLabels.date
+					th(colspan=6)
+						span= sLabels.mileage.title
+						small= sLabels.mileage.unit
+					th(colspan=5)
+						span= sLabels.volume.title
+						small= sLabels.volume.unit
+					th(colspan=5)
+						span= sLabels.consumption.title
+						small= sLabels.consumption.unit
+					th(colspan=7)
+						span= sLabels.price.title
+						small= sLabels.price.unit
+				tr
+					th
+					//.mdl-data-table__cell--non-numeric= sLabels.date	
+					th= sLabels.mileage.total
+					th= sLabels.mileage.current
+					th= sLabels.mileage.perMonth
+					th= sLabels.mileage.perQuarter
+					th= sLabels.mileage.perYear
+					th= sLabels.mileage.perLiter
+					
+					th= sLabels.volume.total
+					th= sLabels.volume.current
+					th= sLabels.volume.perMonth
+					th= sLabels.volume.perQuarter
+					th= sLabels.volume.perYear
+					
+					th= sLabels.consumption.total
+					th= sLabels.consumption.current
+					th= sLabels.consumption.perMonth
+					th= sLabels.consumption.perQuarter
+					th= sLabels.consumption.perYear
+					
+					th= sLabels.price.total
+					th= sLabels.price.current
+					th= sLabels.price.perMonth
+					th= sLabels.price.perQuarter
+					th= sLabels.price.perYear
+					th= sLabels.price.perLiter
+					th= sLabels.price.perKilometer
+					
+			tbody(data-bind="foreach:refills")
+				tr
+					td.mdl-data-table__cell--non-numeric(data-bind="text:date")
+					td(data-bind="number: mileage.total")= sLabels.na
+					td(data-bind="number: mileage.current")= sLabels.na
+					td(data-bind="number: mileage.perMonth")= sLabels.na
+					td(data-bind="number: mileage.perQuarter")= sLabels.na
+					td(data-bind="number: mileage.perYear")= sLabels.na
+					td(data-bind="number: mileage.perLiter")= sLabels.na
+					
+					td(data-bind="number: volume.total")= sLabels.na
+					td(data-bind="number: volume.current")= sLabels.na
+					td(data-bind="number: volume.perMonth")= sLabels.na
+					td(data-bind="number: volume.perQuarter")= sLabels.na
+					td(data-bind="number: volume.perYear")= sLabels.na
+					
+					td(data-bind="number: consumption.total")= sLabels.na
+					td(data-bind="number: consumption.current")= sLabels.na
+					td(data-bind="number: consumption.perMonth")= sLabels.na
+					td(data-bind="number: consumption.perQuarter")= sLabels.na
+					td(data-bind="number: consumption.perYear")= sLabels.na
+					
+					td(data-bind="number: price.total")= sLabels.na
+					td(data-bind="number: price.current")= sLabels.na
+					td(data-bind="number: price.perMonth")= sLabels.na
+					td(data-bind="number: price.perQuarter")= sLabels.na
+					td(data-bind="number: price.perYear")= sLabels.na
+					td(data-bind="number: price.perLiter")= sLabels.na
+					td(data-bind="number: price.perKilometer")= sLabels.na
