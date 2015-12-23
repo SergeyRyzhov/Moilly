@@ -12,16 +12,16 @@
       tbody(data-bind="foreach: refills")
         td
           .mdl-textfield.mdl-js-textfield
-            input#date.mdl-textfield__input(type='date', name='date', required, data-bind='value: date')
+            input.mdl-textfield__input(type='date', required, data-bind='value: date')
         td
           .mdl-textfield.mdl-js-textfield
-            input#mileage.mdl-textfield__input(type='number', name='mileage', required, data-bind='value: mileage')
+            input.mdl-textfield__input(type='number', required, data-bind='value: mileage')
         td
           .mdl-textfield.mdl-js-textfield
-            input#volume.mdl-textfield__input(type='number', name='volume', required, min="1", step="0.01" data-bind='textinput: volume')
+            input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: volume')
         td
           .mdl-textfield.mdl-js-textfield
-            input#total.mdl-textfield__input(type='number', name='total', required, min="1", step="0.01" data-bind='textinput: total')
+            input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: total')
   .mdl-cell.mdl-cell--10-col
   .mdl-cell.mdl-cell--2-col
     a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(data-bind='click: add')
