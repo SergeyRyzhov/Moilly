@@ -1,11 +1,12 @@
 define([
   'knockout',
+  'amplify',
   'underscore',
   'storage',
   'constants',
   'localization',
   'moment'
-], function (ko, _, storage, constants, localization, moment) {
+], function (ko, amplify, _, storage, constants, localization, moment) {
   'use strict';
 
   function refillModel(params) {
@@ -25,18 +26,33 @@ define([
   return function (params) {
     var refills = ko.observableArray([refillModel()]);
 
+    amplify.request.define("refill.submit", "ajax", {
+      url: "/api/refill",
+      type: 'POST',
+      dataType: 'json',
+      traditional: true,
+      contentType: 'application/json; charset=utf-8'
+    });
+
     function add() {
       refills.push(refillModel());
     }
 
     function submit() {
-      refills([refillModel()]);
+      amplify.request("refill.submit",
+        ko.toJSON({
+          refills: refills
+        }),
+        function (data) {
+          console.debug(data);
+          refills([refillModel()]);
+        });
     }
 
     return {
       refills: refills,
       add: add,
-      submit:submit
+      submit: submit
     }
   }
 });

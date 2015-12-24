@@ -20,7 +20,7 @@ function init(router) {
   });
 
   router.post('/api/refill', function (req, res, next) {
-    var postData = req.body.refills;
+    var postData = req.body.refills;    
     _.each(postData, function (refill) {
       refillModel.create({
         date: refill.date,

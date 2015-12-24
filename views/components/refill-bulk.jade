@@ -1,30 +1,31 @@
-.mdl-grid
-  .mdl-cell.mdl-cell--12-col
-    h4=labels.refill.title
-  .mdl-cell.mdl-cell--12-col
-    table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.refill-bulk-table
-      thead
-        tr
-          th=labels.refill.date
-          th=labels.refill.mileage
-          th=labels.refill.volume
-          th=labels.refill.total
-      tbody(data-bind="foreach: refills")
-        td
-          .mdl-textfield.mdl-js-textfield
-            input.mdl-textfield__input(type='date', required, data-bind='value: date')
-        td
-          .mdl-textfield.mdl-js-textfield
-            input.mdl-textfield__input(type='number', required, data-bind='value: mileage')
-        td
-          .mdl-textfield.mdl-js-textfield
-            input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: volume')
-        td
-          .mdl-textfield.mdl-js-textfield
-            input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: total')
-  .mdl-cell.mdl-cell--10-col
-  .mdl-cell.mdl-cell--2-col
-    a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(data-bind='click: add')
-      i.material-icons add
-    a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(data-bind='click: submit')
-      i.material-icons done
+form#bulkForm
+  .mdl-grid
+    .mdl-cell.mdl-cell--12-col
+      h4=labels.refill.title
+    .mdl-cell.mdl-cell--12-col
+      table.mdl-data-table.mdl-js-data-table.mdl-shadow--2dp.refill-bulk-table
+        thead
+          tr
+            th=labels.refill.date
+            th=labels.refill.mileage
+            th=labels.refill.volume
+            th=labels.refill.total
+        tbody(data-bind="foreach: refills")
+          td
+            .mdl-textfield.mdl-js-textfield
+              input.mdl-textfield__input(type='date', required, data-bind='value: date')
+          td
+            .mdl-textfield.mdl-js-textfield
+              input.mdl-textfield__input(type='number', required, data-bind='value: mileage')
+          td
+            .mdl-textfield.mdl-js-textfield
+              input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: volume')
+          td
+            .mdl-textfield.mdl-js-textfield
+              input.mdl-textfield__input(type='number', required, min="1", step="0.01" data-bind='textinput: total')
+    .mdl-cell.mdl-cell--10-col
+    .mdl-cell.mdl-cell--2-col
+      a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(data-bind='click: add')
+        i.material-icons add
+      a.mdl-button.mdl-js-button.mdl-button--fab.mdl-button--mini-fab.mdl-js-ripple-effect.mdl-button--colored(data-bind='click: submit')
+        i.material-icons done
