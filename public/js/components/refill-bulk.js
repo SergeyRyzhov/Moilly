@@ -35,7 +35,10 @@ define([
     });
 
     function add() {
-      refills.push(refillModel());
+      var lRefill = refills.slice(-1)[0];
+      var nRefill = refillModel();
+      nRefill.date(lRefill.date());
+      refills.push(nRefill);
     }
 
     function submit() {

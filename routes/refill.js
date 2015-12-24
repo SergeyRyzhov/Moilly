@@ -21,20 +21,23 @@ function init(router) {
 
   router.post('/api/refill', function (req, res, next) {
     var postData = req.body.refills;    
-    _.each(postData, function (refill) {
+    var errors = _.reduce(postData, function (memo, refill) {
       refillModel.create({
         date: refill.date,
         mileage: refill.mileage,
         volume: refill.volume,
         total: refill.total,
         user: req.user._id
+      }, function (err, refill) { 
+        if (err)
+          memo.push(err);
       });
-    });
+    }, []);
 
     res.send({
-      message: '',
+      message: errors,
       refills: postData,
-      success: true
+      success: errors.length == 0
     });
   });
 
