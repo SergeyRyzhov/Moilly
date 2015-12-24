@@ -19,20 +19,22 @@ function init(router) {
     });
   });
 
-  router.post('/api/refill', function (req, res, next) {
-    var postData = req.body.refills;    
-    var errors = _.reduce(postData, function (memo, refill) {
+  router.post('/api/refill', authenticator.midleware, function (req, res, next) {
+    var postData = req.body.refills;
+    var errors = [];
+
+    _.each(postData, function (memo, refill) {
       refillModel.create({
         date: refill.date,
         mileage: refill.mileage,
         volume: refill.volume,
         total: refill.total,
         user: req.user._id
-      }, function (err, refill) { 
+      }, function (err, refill) {
         if (err)
-          memo.push(err);
+          errors.push(err);
       });
-    }, []);
+    });
 
     res.send({
       message: errors,
@@ -41,14 +43,10 @@ function init(router) {
     });
   });
 
-  router.post('/api/refill/:id/:action', authenticator.midleware, function (req, res, next) {
-    // refillModel.list({ user: req.user._id }, function (err, refills) {
-    // 	res.send({
-    // 		message: err,
-    // 		refills: refills,
-    // 		success: !err
-    // 	})
-    // });
+  router.post('/api/refill/delete', authenticator.midleware, function (req, res, next) {
+    refillModel.find({ _id: req.body.id }).remove(function () {
+      res.redirect('/');
+    });
   });
 
   router.all('/api/refill/:culture/:action', authenticator.midleware, function (req, res, next) {
