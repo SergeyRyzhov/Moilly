@@ -48,7 +48,10 @@ define([
         }),
         function (data) {
           console.debug(data);
-          refills([refillModel()]);
+          var lRefill = refills.slice(-1)[0];
+          var nRefill = refillModel();
+          nRefill.date(lRefill.date());
+          refills([nRefill]);
         });
     }
 
