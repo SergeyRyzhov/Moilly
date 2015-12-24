@@ -3,7 +3,7 @@ function init(router) {
   var settings = require('../app/tools/settings');
 
   var authenticator = require('../app/tools/authenticator');
-  var logger = require('../app/tools/logger')('AuthRouter');
+  var logger = require('../app/tools/logger')('RefillRouter');
   var _ = require('underscore');
 
   var refillModel = require('../app/models/refill');
@@ -22,8 +22,9 @@ function init(router) {
   router.post('/api/refill', authenticator.midleware, function (req, res, next) {
     var postData = req.body.refills;
     var errors = [];
+    logger.debug(postData);
 
-    _.each(postData, function (memo, refill) {
+    _.each(postData, function (refill) {
       refillModel.create({
         date: refill.date,
         mileage: refill.mileage,
@@ -31,8 +32,11 @@ function init(router) {
         total: refill.total,
         user: req.user._id
       }, function (err, refill) {
-        if (err)
+        logger.debug(refill);
+        if (err) {
+          logger.error(err);
           errors.push(err);
+        }
       });
     });
 
@@ -47,10 +51,6 @@ function init(router) {
     refillModel.find({ _id: req.body.id }).remove(function () {
       res.redirect('/');
     });
-  });
-
-  router.all('/api/refill/:culture/:action', authenticator.midleware, function (req, res, next) {
-    res.send(req.user);
   });
 
   router.post('/refill/add', function (req, res, next) {
