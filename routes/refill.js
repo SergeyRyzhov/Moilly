@@ -32,7 +32,7 @@ function init(router) {
         total: refill.total,
         user: req.user._id
       }, function (err, refill) {
-        logger.debug(refill);
+        //logger.debug(refill);
         if (err) {
           logger.error(err);
           errors.push(err);
@@ -48,8 +48,18 @@ function init(router) {
   });
 
   router.post('/api/refill/delete', authenticator.midleware, function (req, res, next) {
-    refillModel.find({ _id: req.body.id }).remove(function () {
-      res.redirect('/');
+    logger.debug(req.body);
+
+    refillModel.find({ _id: req.body.id }).remove(function (err) {
+      if (err) {
+        logger.error(err);
+      }
+      
+      res.send({
+        message: err,
+        deletedId: req.body.id,
+        success: !!err
+      });
     });
   });
 
