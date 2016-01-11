@@ -12,10 +12,12 @@ define([
   'use strict';
 
   function refillViewModel(refills, rawRefill) {
+
+
     function computeSumm(from, to, field) {
       return _.reduce(_.filter(refills,
         function (refill) {
-          var now = moment(refill.date);
+          var now = refill.mDate;
           return now < to && (!from || now > from);
         }),
         function (memo, refill) {
@@ -23,26 +25,26 @@ define([
         }, 0);
     }
 
-    var startOfMonth = moment(rawRefill.date).startOf('month');
-    var startOfQuarter = moment(rawRefill.date).startOf('quarter');
-    var startOfYear = moment(rawRefill.date).startOf('year');
+    var startOfMonth = rawRefill.mDate.startOf('month');
+    var startOfQuarter = rawRefill.mDate.startOf('quarter');
+    var startOfYear = rawRefill.mDate.startOf('year');
 
-    var date = ko.observable(moment(rawRefill.date).format('dddd, LL'));
+    var date = ko.observable(rawRefill.mDate.format('dddd, LL'));
     // var date = ko.observable(moment(rawRefill.date).calendar());
     var mileage = ko.observable(rawRefill.mileage);
     var volume = ko.observable(rawRefill.volume);
     var total = ko.observable(rawRefill.total);
 
     function totalPerPeriod(start) {
-      return computeSumm(start, moment(rawRefill.date), 'total') + total();
+      return computeSumm(start, rawRefill.mDate, 'total') + total();
     }
 
     function volumePerPeriod(start) {
-      return computeSumm(start, moment(rawRefill.date), 'volume') + volume();
+      return computeSumm(start, rawRefill.mDate, 'volume') + volume();
     }
 
     function mileagePerPeriod(start) {
-      return computeSumm(start, moment(rawRefill.date), 'mileage') + mileage();
+      return computeSumm(start, rawRefill.mDate, 'mileage') + mileage();
     }
 
     function consumption(vol, mil) {
@@ -52,7 +54,7 @@ define([
     var cost = ko.pureComputed(function () {
       return total() / (volume() || 1);
     });
-    
+
     return {
       remove: function submit() {
         amplify.request("refill.remove",
@@ -123,6 +125,10 @@ define([
 
     var refillsText = ko.pureComputed(function () {
       return ko.toJSON(refills);
+    });
+
+    _.each(refillsData.refills, function (refill) {
+      refill.mDate = moment(refill.date);
     });
 
     refills(_.map(refillsData.refills, function (r) {
