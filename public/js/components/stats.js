@@ -25,9 +25,9 @@ define([
         }, 0);
     }
 
-    var startOfMonth = rawRefill.mDate.startOf('month');
-    var startOfQuarter = rawRefill.mDate.startOf('quarter');
-    var startOfYear = rawRefill.mDate.startOf('year');
+    var startOfMonth = rawRefill.mDate.clone().startOf('month');
+    var startOfQuarter = rawRefill.mDate.clone().startOf('quarter');
+    var startOfYear = rawRefill.mDate.clone().startOf('year');
 
     var date = ko.observable(rawRefill.mDate.format('dddd, LL'));
     // var date = ko.observable(moment(rawRefill.date).calendar());
