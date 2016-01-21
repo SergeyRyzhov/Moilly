@@ -5,6 +5,10 @@
 	},
 	"menu": {
 		"account": "Account",
+		"stats": "Statistics"
+	},
+	"_menu": {
+		"account": "Account",
 		"cars": "Cars",
 		"stats": "Statistics",
 		"about": "About us"
