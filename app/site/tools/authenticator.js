@@ -4,7 +4,7 @@ var jwt = require('jsonwebtoken');
 var constants = require('../constants/index');
 var settings = require('./settings');
 var expressJwt = require('express-jwt');
-var logger = require('./logger')('Authentificator');
+var logger = require(__common + '/tools/logger')('Authentificator');
 
 var secret = new Buffer(env.JWTSECRET, 'base64');
 var anonymous = { isAuthenticated: false };

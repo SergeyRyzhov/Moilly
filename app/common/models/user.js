@@ -4,7 +4,7 @@ var crypto = require('crypto');
 var Schema = mongodb.schema;
 var mongo = mongodb.mongo;
 
-var UserSchema = new Schema({
+var schema = new Schema({
 	email: { type: String, default: '' },
 	username: { type: String, default: '' },
 	phone: { type: String, default: '' },
@@ -13,24 +13,24 @@ var UserSchema = new Schema({
 	salt: { type: String, default: '' }
 });
 
-UserSchema
+schema
 	.virtual('password')
 	.set(function (password) {
 		this._password = password;
 		this.salt = this.makeSalt();
 		this.hashed_password = this.encryptPassword(password);
 	})
-	.get(function () { return this._password });
+	.get(function () { return this._password; });
 
 var validatePresenceOf = function (value) {
 	return value && value.length;
 };
 
-UserSchema.path('email').validate(function (email) {
+schema.path('email').validate(function (email) {
 	return email.length;
 }, 'Email cannot be blank');
 
-UserSchema.path('email').validate(function (email, fn) {
+schema.path('email').validate(function (email, fn) {
 	var User = mongo.model('User');
 
 	if (this.isNew || this.isModified('email')) {
@@ -40,7 +40,7 @@ UserSchema.path('email').validate(function (email, fn) {
 	} else fn(true);
 }, 'Email already exists');
 
-UserSchema.path('username').validate(function (username, fn) {
+schema.path('username').validate(function (username, fn) {
 	var User = mongo.model('User');
 
 	if (this.isNew || this.isModified('username')) {
@@ -50,11 +50,11 @@ UserSchema.path('username').validate(function (username, fn) {
 	} else fn(true);
 }, 'User name already exists');
 
-UserSchema.path('username').validate(function (username) {
+schema.path('username').validate(function (username) {
 	return username.length;
 }, 'Username cannot be blank');
 
-UserSchema.path('phone').validate(function (phone, fn) {
+schema.path('phone').validate(function (phone, fn) {
 	var User = mongo.model('User');
 
 	if (this.isNew || this.isModified('phone')) {
@@ -64,15 +64,15 @@ UserSchema.path('phone').validate(function (phone, fn) {
 	} else fn(true);
 }, 'Phone already exists');
 
-UserSchema.path('phone').validate(function (phone) {
+schema.path('phone').validate(function (phone) {
 	return phone.length;
 }, 'Phone cannot be blank');
 
-UserSchema.path('hashed_password').validate(function (hashed_password) {
+schema.path('hashed_password').validate(function (hashed_password) {
 	return hashed_password.length && this._password.length;
 }, 'Password cannot be blank');
 
-UserSchema.pre('save', function (next) {
+schema.pre('save', function (next) {
 	if (!this.isNew) return next();
 
 	if (!validatePresenceOf(this.password) && !this.skipValidation()) {
@@ -82,7 +82,7 @@ UserSchema.pre('save', function (next) {
 	}
 });
 
-UserSchema.methods = {
+schema.methods = {
 	authenticate: function (plainText) {
 		return this.encryptPassword(plainText) === this.hashed_password;
 	},
@@ -102,20 +102,21 @@ UserSchema.methods = {
 	}
 };
 
-UserSchema.statics = {
+schema.statics = {
 	load: function (options, cb) {
 		options.select = options.select || '_id name username';
 		this.findOne(options.criteria)
 			.select(options.select)
 			.exec(cb);
 	}
-}
+};
 
 var model;
 
 if (mongo.models.User) {
 	model = mongo.model('User');
 } else {
-	model = mongo.model('User', UserSchema);
+	model = mongo.model('User', schema);
 }
+
 module.exports = model;

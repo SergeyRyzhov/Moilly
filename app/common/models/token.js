@@ -61,4 +61,5 @@ if (mongo.models.Token) {
 } else {
 	model = mongo.model('Token', schema);
 }
+
 module.exports = model;

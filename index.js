@@ -1,4 +1,11 @@
-var env = process.env;
+/* global global, __base, __common, __site, __bot, __env */
+global.__base = __dirname + '/';
+global.__apps = __dirname + '/app';
+global.__common = __dirname + '/app/common';
+global.__site = __dirname + '/app/site';
+global.__bot = __dirname + '/app/bot';
 
-var bot = require('./app/bot')(env);
-var app = require('./app/site')(env);
+global.__env = process.env;
+
+var bot = require(__bot)(__env);
+var app = require(__site)(__env);

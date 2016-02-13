@@ -6,7 +6,7 @@ var mongo = mongodb.mongo;
 
 var _ = require('underscore');
 
-var RefillSchema = new Schema({
+var schema = new Schema({
 	date: { type: Date, default: Date.now, required: true },
 	mileage: { type: Number, default: 0, required: true },
 	volume: { type: Number, default: 0, required: true },
@@ -14,10 +14,10 @@ var RefillSchema = new Schema({
 	user: { type: Schema.ObjectId, ref: 'User' }
 });
 
-RefillSchema.methods = {
+schema.methods = {
 };
 
-RefillSchema.statics = {
+schema.statics = {
 	load: function (id, cb) {
 		this.findOne({ _id: id })
 			.populate('user', 'email username phone')
@@ -29,7 +29,7 @@ RefillSchema.statics = {
 
 		this.find(criteria)
 			.populate('user', 'email username phone')
-			.sort({ 'date': -1 }) // sort by date
+			.sort({ 'date': -1 })
 			.limit(options.perPage)
 			.skip(options.perPage * options.page)
 			.exec(cb);
@@ -41,6 +41,7 @@ var model;
 if (mongo.models.Refill) {
 	model = mongo.model('Refill');
 } else {
-	model = mongo.model('Refill', RefillSchema);
+	model = mongo.model('Refill', schema);
 }
+
 module.exports = model;

@@ -1,4 +1,4 @@
-var utils = require(__common + '/tools/utils');
+var utils = require(__common + 'tools/utils');
 var constants = require('../constants/index');
 
 function defaultSettings(req) {

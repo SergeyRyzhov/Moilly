@@ -1,13 +1,9 @@
 function init(router) {
-	var constants = require('../constants/index');
-	var settings = require('../tools/settings');
-
 	var authenticator = require('../tools/authenticator');
-	var logger = require('../tools/logger')('RefillRouter');
+	var logger = require(__common + '/tools/logger')('RefillRouter');
 	var _ = require('underscore');
 
-	var refillModel = require('../models/refill');
-	//var userModel = require('../models/user');
+	var refillModel = require(__common+ '/models/refill');
 
 	router.get('/api/refill', authenticator.midleware, function (req, res, next) {
 		refillModel.list({ criteria: { user: req.user._id } }, function (err, refills) {
@@ -32,7 +28,6 @@ function init(router) {
 				total: refill.total,
 				user: req.user._id
 			}, function (err, refill) {
-				//logger.debug(refill);
 				if (err) {
 					logger.error(err);
 					errors.push(err);

@@ -1,11 +1,6 @@
 function init(router) {
-	var constants = require('../constants/index');
-	var settings = require('../tools/settings');
-	var logger = require('../tools/logger')('AuthRouter');
 	var authenticator = require('../tools/authenticator');
-	var _ = require('underscore');
-
-	var userModel = require('../models/user');
+	var userModel = require(__common+'/models/user');
 
 	router.post('/auth/password', function (req, res, next) {
 		userModel.findOne({
