@@ -4,6 +4,7 @@ block headermeta
 block headerscripts
   script(src="/vendor/js/require.js", data-main="/js/startup")
   link(rel='stylesheet', href='/css/style.css')
+  link(rel='stylesheet', href='/css/account.css')
 block content
   if user.isAuthenticated
     // ko component: {name: page, params: { }}

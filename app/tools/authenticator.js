@@ -18,7 +18,7 @@ var jwtmidlware = expressJwt({
 		if (req.cookies.authorization) {
 			return req.cookies.authorization;
 		}
-		
+
 		return jwt.sign(anonymous, secret);
 	}
 });

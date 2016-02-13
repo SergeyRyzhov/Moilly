@@ -18,12 +18,12 @@
 	},
 	"account": {
 		"title": "Account",
-		"password":{
-			"title":"Change password",
-			"old":"Old password",
-			"new":"New password",
-			"new2":"New password",
-			"submit":"Change"
+		"password": {
+			"title": "Change password",
+			"old": "Old password",
+			"new": "New password",
+			"new2": "New password",
+			"submit": "Change"
 		}
 	},
 	"auth": {

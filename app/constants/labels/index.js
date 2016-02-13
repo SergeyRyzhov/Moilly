@@ -3,7 +3,6 @@ var _ = require('underscore');
 var utils = require('../../tools/utils');
 var cultures = {};
 
-
 function initialize() {
 	function loadLabels(cultures) {
 		var defaultLabels = require('./default.json');

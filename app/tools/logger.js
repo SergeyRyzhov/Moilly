@@ -4,15 +4,7 @@ module.exports = function (name) {
 		"appenders": [
 			{
 				type: 'console'
-			}/*,
-			{
-				"type": "file",
-				"absolute": true,
-				"filename": "logs/moilly.log",
-				"maxLogSize": 20480,
-				"backups": 10,
-				"category": "absolute-logger"
-			}*/]
+			}]
 	});
 	return log4js.getLogger(name);
 };

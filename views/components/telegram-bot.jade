@@ -1,0 +1,18 @@
+- var _labels = labels.account.telegram;
+.telegram-card-wide.mdl-card.mdl-shadow--2dp
+	.mdl-card__title
+			h2.mdl-card__title-text=_labels.title
+	.mdl-card__supporting-text
+		p
+			=_labels.setup.title
+			=' '
+			a=_labels.setup.comand
+			=' '
+			=_labels.setup.token
+		.mdl-typography--display-2(data-bind="text:token")
+		p
+			=_labels.setup.complete
+	.mdl-card__actions.mdl-card--border
+		a.mdl-button.mdl-button--colored.mdl-js-button.mdl-js-ripple-effect(href=_labels.link, target='_blank')
+			=_labels.open
+		.mdl-layout-spacer
