@@ -7,5 +7,5 @@ global.__bot = __dirname + '/app/bot';
 
 global.__env = process.env;
 
-var bot = require(__bot)(__env);
-var app = require(__site)(__env);
+var bot = require(__bot)();
+var site = require(__site)();

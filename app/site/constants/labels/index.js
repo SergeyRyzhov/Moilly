@@ -17,7 +17,6 @@ function correctCulture(culture) {
 	return culture;
 }
 
-
 function loadLabels(cultures) {
 	var defaultLabels = require('./default.json');
 

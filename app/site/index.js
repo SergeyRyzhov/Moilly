@@ -82,11 +82,11 @@ if (app.get('env') === 'development') {
 }
 
 
-module.exports = function (env) {
+module.exports = function () {
 	var debug = require('debug')('moilly:server');
 	var http = require('http');
 
-	var port = normalizePort(env.PORT || '3000');
+	var port = normalizePort(__env.PORT || '3000');
 	app.set('port', port);
 
 	var server = http.createServer(app);

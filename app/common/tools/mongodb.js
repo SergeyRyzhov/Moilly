@@ -2,10 +2,8 @@
 var logger = require("./logger.js")('mongodb'),
 	mongoose = require('mongoose'),
 	config = require('./config.js');
-
-var env = process.env;
-
-mongoose.connect(env.MONGOCONNECTION);
+	
+mongoose.connect(__env.MONGOCONNECTION);
 
 var db = mongoose.connection;
 
