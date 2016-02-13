@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var webLogger = require('morgan');
-var logger = require('./app/tools/logger')('moilly');
+var logger = require('./tools/logger')('moilly');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
@@ -33,7 +33,7 @@ else {
 app.use('/', express.static(path.join(__dirname, 'public')));
 app.use('/vendor', express.static(path.join(__dirname, 'vendor')));
 
-var authenticator = require('./app/tools/authenticator');
+var authenticator = require('./tools/authenticator');
 app.use(authenticator.midleware);
 
 app.use('/', routes);
@@ -46,7 +46,7 @@ app.use(function (req, res, next) {
 });
 
 // error handlers
-var settings = require('./app/tools/settings');
+var settings = require('./tools/settings');
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {

@@ -1,6 +1,6 @@
 function init(router) {
-	var constants = require('../app/constants/index');
-	var settings = require('../app/tools/settings');
+	var constants = require('../constants/index');
+	var settings = require('../tools/settings');
 
 	router.get('/:culture', function (req, res, next) {
 		if (constants.labels.hasCulture(req.params.culture))
