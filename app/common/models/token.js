@@ -11,8 +11,8 @@ var mongo = mongodb.mongo;
 var _ = require('underscore');
 
 var schema = new Schema({
-	token: { type: Number, default: 0, required: true },
-	user: { type: Schema.ObjectId, ref: 'User' }
+	token: { type: Number, default: 0, required: true },	
+	user: { type: Schema.ObjectId, ref: 'User', required: true }
 });
 
 schema.methods = {
@@ -27,9 +27,7 @@ schema.statics = {
 	},
 
 	list: function (options, cb) {
-		var criteria = options.criteria || {};
-
-		this.find(criteria)
+		this.find(options.criteria)
 			.populate('user', 'email username phone')
 			.limit(options.perPage)
 			.skip(options.perPage * options.page)

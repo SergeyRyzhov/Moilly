@@ -11,7 +11,7 @@ var schema = new Schema({
 	mileage: { type: Number, default: 0, required: true },
 	volume: { type: Number, default: 0, required: true },
 	total: { type: Number, default: 0, required: true },
-	user: { type: Schema.ObjectId, ref: 'User' }
+	user: { type: Schema.ObjectId, ref: 'User', required: true }
 });
 
 schema.methods = {

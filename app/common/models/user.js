@@ -104,7 +104,7 @@ schema.methods = {
 
 schema.statics = {
 	load: function (options, cb) {
-		options.select = options.select || '_id name username';
+		options.select = options.select || '_id email username';
 		this.findOne(options.criteria)
 			.select(options.select)
 			.exec(cb);

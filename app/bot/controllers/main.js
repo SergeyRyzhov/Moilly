@@ -89,12 +89,12 @@ function addCallback($, data) {
 		console.log('Add refill', data);
 		console.log('Context', $.user);
 		if (auth.verify($.user)) {
-			refill.add($.user, data);
+		refill.add($.user, data);
 		}
 		else {
-			$.sendMessage(labels.auth.error);
-			$.runMenu(buildMenu($));
-			return;
+		$.sendMessage(labels.auth.error);
+		$.runMenu(buildMenu($));
+		return;
 		}
 		end($);
 }
@@ -102,8 +102,13 @@ function addCallback($, data) {
 function linkAccount($, data) {
 		console.log('Link account', data);
 		console.log('Context', $.user);
-		auth.signup($.user, data);
-		
+		auth.signup($.user, data, (err, bridge, success) => {
+		if (success) {
+
+			$.sendMessage(JSON.stringify(bridge));
+		}
+		});
+
 		end($);
 }
 
