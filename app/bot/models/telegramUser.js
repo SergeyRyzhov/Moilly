@@ -4,7 +4,7 @@ var mongo = mongodb.mongo;
 
 var schema = new Schema({
 	externalId: { type: Number, required: true },
-	fisrtName: { type: String, default: '' },
+	firstName: { type: String, default: '' },
 	lastName: { type: String, default: '' },
 	username: { type: String, required: true },
 	user: { type: Schema.ObjectId, ref: 'User', required: true }
@@ -17,7 +17,7 @@ schema.statics = {
 	},
 
 	loadForOwnUser: function (user, cb) {
-		this.findOne({ user: user._id })
+		this.find({ user: user._id })
 			.exec(cb);
 	},
 
@@ -43,7 +43,7 @@ schema.statics = {
 			} else {
 				result = new Model({
 					externalId: user.id,
-					fisrtName: user.first_name,
+					firstName: user.first_name,
 					lastName: user.last_name,
 					username: user.username,
 					user: ownUser._id

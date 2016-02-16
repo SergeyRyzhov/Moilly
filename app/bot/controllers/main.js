@@ -1,4 +1,3 @@
-
 var constants = require('../constants');
 var labels = constants.labels;
 var settings = constants.settings;
@@ -12,7 +11,7 @@ var refill = require('../tools/refillService');
 
 var culture = settings.common.defaultCulture;
 if (labels.hasCulture(culture)) {
-		labels = labels.load(culture);
+	labels = labels.load(culture);
 }
 
 function addFormMVT($, cb) {
@@ -86,30 +85,30 @@ function end($) {
 }
 
 function addCallback($, data) {
-		console.log('Add refill', data);
-		console.log('Context', $.user);
-		if (auth.verify($.user)) {
+	console.log('Add refill', data);
+	console.log('Context', $.user);
+	if (auth.verify($.user)) {
 		refill.add($.user, data);
-		}
-		else {
+	}
+	else {
 		$.sendMessage(labels.auth.error);
 		$.runMenu(buildMenu($));
 		return;
-		}
-		end($);
+	}
+	end($);
 }
 
 function linkAccount($, data) {
-		console.log('Link account', data);
-		console.log('Context', $.user);
-		auth.signup($.user, data, (err, bridge, success) => {
+	console.log('Link account', data);
+	console.log('Context', $.user);
+	auth.signup($.user, data, (err, bridge, success) => {
 		if (success) {
 
 			$.sendMessage(JSON.stringify(bridge));
 		}
-		});
+	});
 
-		end($);
+	end($);
 }
 
 module.exports = ($) => {
