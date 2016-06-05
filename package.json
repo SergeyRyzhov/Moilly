@@ -1,6 +1,6 @@
 {
 	"name": "Moilly",
-	"version": "0.0.1",
+	"version": "1.0.0",
 	"description": "Fuel manager",
 	"main": "index.js",
 	"scripts": {
